@@ -1,3 +1,4 @@
+
 # SimpleNotes
 
 Web3 Notes Application built on Hedera Hashgraph.
@@ -14,7 +15,7 @@ The application removes reliance on centralized authentication servers and gives
 
 ## Architecture
 
-```
+```mermaid
 graph TD
     A[Main Application] --> B[HashRouter]
     B --> C[App.tsx - Route Handler]
@@ -23,9 +24,8 @@ graph TD
     C --> F[ConnectWallet.tsx - Wallet Connection]
     D --> G[DappLanding.css - Styling]
     E --> H[Hedera SDK]
-    F --> H
     H --> I[Hedera Network]
-    C --> J[React Toastify - Notifications]
+    C --> J[react-toastify - Notifications]
 ```
 
 ---
