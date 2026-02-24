@@ -882,6 +882,8 @@
 import { useState, useEffect } from "react";
 import { Client, AccountBalanceQuery, PrivateKey, AccountId } from "@hashgraph/sdk";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import {Link} from "react-router-dom";
 
 const ConnectHederaAccount = () => {
   const [accountId, setAccountId] = useState("");
@@ -929,7 +931,7 @@ const ConnectHederaAccount = () => {
       setLoading(true);
 
       if (!accountId || !privateKey) {
-        alert("Please enter both Account ID and Private Key");
+        toast.error("Please enter both Account ID and Private Key");
         return;
       }
 
@@ -956,7 +958,7 @@ const ConnectHederaAccount = () => {
 
     } catch (err) {
       console.error(err);
-      alert("Invalid Account ID or Private Key");
+      toast.error("Invalid Account ID or Private Key");
       setBalance("");
     } finally {
       setLoading(false);
@@ -966,7 +968,7 @@ const ConnectHederaAccount = () => {
   // --- Disconnect ---
   const disconnect = () => {
     clearAccountId();
-    alert("Disconnected from account.");
+    toast.error("Disconnected from account.");
   };
 
   // --- Hot reload: check for changes in localStorage every 3 seconds ---
@@ -1047,6 +1049,7 @@ const ConnectHederaAccount = () => {
 
   return (
     <div>
+      <Link to="/">home</Link>
       <h2>Connect Hedera Account</h2>
 
       <input
