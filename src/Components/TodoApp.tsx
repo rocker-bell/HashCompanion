@@ -775,6 +775,253 @@
 // export default TodoApp;
 
 
+// import { useState, useEffect } from "react";
+// import { Link } from "react-router-dom";
+// import {
+//   Client,
+//   AccountId,
+//   PrivateKey,
+//   ContractCallQuery,
+//   ContractFunctionParameters,
+//   ContractExecuteTransaction,
+// } from "@hashgraph/sdk";
+// import { toast } from "react-toastify";
+// import "../Styles/TodoApp.css";
+
+// type Status = "Active" | "Completed" | "Expired";
+
+// const CONTRACT_ID = "0.0.8028090";
+
+// // TodoApp.tsx
+// interface TodoAppProps {
+//   accountId: string | null;
+//   privateKey: string | null;
+//   evmAddress: string | null; // ✅ add this
+// }
+
+// const TodoApp = ({ accountId, privateKey, evmAddress }: TodoAppProps) => {
+//   const [todos, setTodos] = useState<{ title: string; description: string; status: Status }[]>([]);
+//   const [todoTitle, setTodoTitle] = useState("");
+//   const [activeFilter, setActiveFilter] = useState<Status | "All">("All");
+
+//   // -------------------- Create Hedera Client --------------------
+//   const createClient = () => {
+//     if (!accountId || !privateKey) throw new Error("Wallet not connected");
+//     const client = import.meta.env.VITE_NETWORK === "mainnet" ? Client.forMainnet() : Client.forTestnet();
+//     client.setOperator(AccountId.fromString(accountId), PrivateKey.fromStringECDSA(privateKey));
+//     return client;
+//   };
+
+//   // -------------------- Fetch Todos --------------------
+//   const fetchTodos = async () => {
+//     if (!accountId || !privateKey) return;
+
+//     try {
+//       const client = createClient();
+
+//       const totalTx = await new ContractCallQuery()
+//         .setContractId(CONTRACT_ID)
+//         .setGas(500_000)
+//         .setFunction("getTotalTodos")
+//         .execute(client);
+
+//       const totalTodos = Number(totalTx.getUint256(0));
+//       const allTodos: { title: string; description: string; status: Status }[] = [];
+
+//       for (let i = 1; i <= totalTodos; i++) {
+//         const todoRes = await new ContractCallQuery()
+//           .setContractId(CONTRACT_ID)
+//           .setGas(200_000)
+//           .setFunction("getTodo", new ContractFunctionParameters().addUint256(i))
+//           .execute(client);
+
+//         const title = todoRes.getString(0);
+//         const description = todoRes.getString(1);
+//         const statusIndex = Number(todoRes.getUint256(3)); // <-- correct index
+//         const status: Status =
+//           statusIndex === 0 ? "Active" : statusIndex === 1 ? "Completed" : "Expired";
+
+//         allTodos.push({ title, description, status });
+//       }
+
+//       setTodos(allTodos);
+//     } catch (err) {
+//       console.error(err);
+//       toast.error("Failed to fetch todos");
+//     }
+//   };
+
+//   // -------------------- Add Todo --------------------
+//   const addTodo = async () => {
+//     if (!todoTitle || !accountId || !privateKey) {
+//       toast.error("Please enter a task");
+//       return;
+//     }
+
+//     try {
+//       const client = createClient();
+//       const dueDate = Math.floor(Date.now() / 1000) + 24 * 60 * 60;
+
+//       await new ContractExecuteTransaction()
+//         .setContractId(CONTRACT_ID)
+//         .setGas(500_000)
+//         .setFunction(
+//           "addTodo",
+//           new ContractFunctionParameters()
+//             .addString(todoTitle)
+//             .addString("") // description empty for quick-add
+//             .addUint256(dueDate)
+//         )
+//         .execute(client);
+
+//       toast.success("Todo added!");
+//       setTodoTitle("");
+//       fetchTodos();
+//     } catch (err) {
+//       console.error(err);
+//       toast.error("Failed to add todo");
+//     }
+//   };
+
+
+
+// const updateTodoStatus = async (todoIndex: number, newStatus: Status) => {
+//   if (!accountId || !privateKey || !evmAddress) {
+//     toast.error("Wallet not connected");
+//     return;
+//   }
+
+//   const client = createClient();
+//   const todoId = todoIndex + 1; // convert UI index to 1-based
+
+//   try {
+//     // fetch todo to verify owner
+//     const todoRes = await new ContractCallQuery()
+//       .setContractId(CONTRACT_ID)
+//       .setGas(200_000)
+//       .setFunction("getTodo", new ContractFunctionParameters().addUint256(todoId))
+//       .execute(client);
+
+//     const owner = todoRes.getAddress(4); // EVM address of the todo creator
+//     console.log("owner", owner)
+//     console.log("evm address", evmAddress)
+//     // ✅ Compare with global evmAddress instead of accountId
+//     if (owner.toLowerCase() !== evmAddress.toLowerCase()) {
+//       toast.error("You are not the owner of this todo");
+//       return;
+//     }
+
+//     // execute status update
+//     const tx = await new ContractExecuteTransaction()
+//       .setContractId(CONTRACT_ID)
+//       .setGas(300_000)
+//       .setFunction(
+//         "updateStatus",
+//         new ContractFunctionParameters()
+//           .addUint256(todoId)
+//           .addUint256(newStatus === "Active" ? 0 : newStatus === "Completed" ? 1 : 2)
+//       )
+//       .execute(client);
+
+//     await tx.getReceipt(client);
+
+//     toast.success(`Todo marked as ${newStatus}`);
+//     fetchTodos();
+//   } catch (err) {
+//     console.error(err);
+//     toast.error("Failed to update todo status");
+//   }
+// };
+
+//   // -------------------- Polling / Hot reload --------------------
+//   useEffect(() => {
+//     if (!accountId || !privateKey) return;
+
+//     fetchTodos(); // initial fetch
+
+//     const intervalId = setInterval(() => {
+//       fetchTodos(); // poll every 5 seconds
+//     }, 5000);
+
+//     return () => clearInterval(intervalId);
+//   }, [accountId, privateKey]);
+
+//   // -------------------- Filtered Todos --------------------
+//   const filteredTodos = todos.filter(t =>
+//     activeFilter === "All" ? true : t.status === activeFilter
+//   );
+
+//   return (
+//     <div className="todo-container">
+
+//       <Link to="/">home</Link>
+//       <h2 className="header-title">Todo List</h2>
+
+//       {/* Input Section */}
+//       <div className="input-group">
+//         <input
+//           type="text"
+//           placeholder="Add a new task..."
+//           value={todoTitle}
+//           onChange={(e) => setTodoTitle(e.target.value)}
+//           className="main-input"
+//         />
+//         <button onClick={addTodo} className="add-btn">+</button>
+//       </div>
+
+//       {/* Tabs Section */}
+//       <div className="tabs-container">
+//         {["All", "Active", "Completed"].map((tab) => (
+//           <button
+//             key={tab}
+//             className={`tab-item ${activeFilter === tab ? "active-tab" : ""}`}
+//             onClick={() => setActiveFilter(tab as any)}
+//           >
+//             {tab}
+//           </button>
+//         ))}
+//       </div>
+
+//       {/* List / Empty State */}
+//       <div className="content-area">
+//         {filteredTodos.length > 0 ? (
+//           <div className="todo-list">
+//             {filteredTodos.map((todo, idx) => (
+//               <div key={idx} className="todo-card">
+//                 <div className="todo-info">
+//                   <p className="todo-text">{todo.title}</p>
+//                   <span className={`status-badge ${todo.status.toLowerCase()}`}>
+//                     {todo.status}
+//                   </span>
+//                 </div>
+//                 {/* <input type="checkbox" name="" id="" /> */}
+//                 <input
+//     type="checkbox"
+//     className="checkbox"
+//     checked={todo.status === "Completed"}
+//     disabled={todo.status === "Expired" || !evmAddress} // cannot complete expired
+//     onChange={() =>
+//       updateTodoStatus(idx, todo.status === "Completed" ? "Active" : "Completed")
+//     }
+//   />
+//               </div>
+//             ))}
+//           </div>
+//         ) : (
+//           <div className="empty-state">
+//             <div className="check-icon-circle">
+//               <span className="checkmark">✓</span>
+//             </div>
+//             <p>Your todo list is empty. Add a task to get started!</p>
+//           </div>
+//         )}
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default TodoApp;
+
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -795,28 +1042,39 @@ const CONTRACT_ID = "0.0.8028090";
 interface TodoAppProps {
   accountId: string | null;
   privateKey: string | null;
+  evmAddress: string | null;
 }
 
-const TodoApp = ({ accountId, privateKey }: TodoAppProps) => {
+const TodoApp = ({ accountId, privateKey, evmAddress }: TodoAppProps) => {
   const [todos, setTodos] = useState<{ title: string; description: string; status: Status }[]>([]);
   const [todoTitle, setTodoTitle] = useState("");
   const [activeFilter, setActiveFilter] = useState<Status | "All">("All");
+  const [isWalletReady, setIsWalletReady] = useState(false);
 
   // -------------------- Create Hedera Client --------------------
   const createClient = () => {
     if (!accountId || !privateKey) throw new Error("Wallet not connected");
-    const client = import.meta.env.VITE_NETWORK === "mainnet" ? Client.forMainnet() : Client.forTestnet();
+    const client =
+      import.meta.env.VITE_NETWORK === "mainnet"
+        ? Client.forMainnet()
+        : Client.forTestnet();
     client.setOperator(AccountId.fromString(accountId), PrivateKey.fromStringECDSA(privateKey));
     return client;
   };
 
+  // -------------------- Wallet readiness --------------------
+  useEffect(() => {
+    if (accountId && privateKey && evmAddress) {
+      setIsWalletReady(true);
+    }
+  }, [accountId, privateKey, evmAddress]);
+
   // -------------------- Fetch Todos --------------------
   const fetchTodos = async () => {
-    if (!accountId || !privateKey) return;
+    if (!isWalletReady) return;
 
     try {
       const client = createClient();
-
       const totalTx = await new ContractCallQuery()
         .setContractId(CONTRACT_ID)
         .setGas(500_000)
@@ -835,7 +1093,7 @@ const TodoApp = ({ accountId, privateKey }: TodoAppProps) => {
 
         const title = todoRes.getString(0);
         const description = todoRes.getString(1);
-        const statusIndex = Number(todoRes.getUint256(3)); // <-- correct index
+        const statusIndex = Number(todoRes.getUint256(3));
         const status: Status =
           statusIndex === 0 ? "Active" : statusIndex === 1 ? "Completed" : "Expired";
 
@@ -851,8 +1109,8 @@ const TodoApp = ({ accountId, privateKey }: TodoAppProps) => {
 
   // -------------------- Add Todo --------------------
   const addTodo = async () => {
-    if (!todoTitle || !accountId || !privateKey) {
-      toast.error("Please enter a task");
+    if (!todoTitle || !isWalletReady) {
+      toast.error("Please enter a task and ensure wallet is connected");
       return;
     }
 
@@ -865,10 +1123,7 @@ const TodoApp = ({ accountId, privateKey }: TodoAppProps) => {
         .setGas(500_000)
         .setFunction(
           "addTodo",
-          new ContractFunctionParameters()
-            .addString(todoTitle)
-            .addString("") // description empty for quick-add
-            .addUint256(dueDate)
+          new ContractFunctionParameters().addString(todoTitle).addString("").addUint256(dueDate)
         )
         .execute(client);
 
@@ -881,45 +1136,89 @@ const TodoApp = ({ accountId, privateKey }: TodoAppProps) => {
     }
   };
 
+  // -------------------- Update Todo Status --------------------
+  const updateTodoStatus = async (todoIndex: number, newStatus: Status) => {
+    if (!isWalletReady) {
+      toast.error("Wallet not connected");
+      return;
+    }
+
+    const client = createClient();
+    const todoId = todoIndex + 1; // UI index to 1-based
+
+    try {
+      const todoRes = await new ContractCallQuery()
+        .setContractId(CONTRACT_ID)
+        .setGas(200_000)
+        .setFunction("getTodo", new ContractFunctionParameters().addUint256(todoId))
+        .execute(client);
+
+      const owner = todoRes.getAddress(4); // EVM address on chain
+
+      if (owner.toLowerCase() !== evmAddress!.toLowerCase()) {
+        toast.error("You are not the owner of this todo");
+        return;
+      }
+
+      const tx = await new ContractExecuteTransaction()
+        .setContractId(CONTRACT_ID)
+        .setGas(300_000)
+        .setFunction(
+          "updateStatus",
+          new ContractFunctionParameters().addUint256(todoId).addUint256(
+            newStatus === "Active" ? 0 : newStatus === "Completed" ? 1 : 2
+          )
+        )
+        .execute(client);
+
+      await tx.getReceipt(client);
+
+      toast.success(`Todo marked as ${newStatus}`);
+      fetchTodos();
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to update todo status");
+    }
+  };
+
   // -------------------- Polling / Hot reload --------------------
   useEffect(() => {
-    if (!accountId || !privateKey) return;
+    if (!isWalletReady) return;
 
-    fetchTodos(); // initial fetch
-
-    const intervalId = setInterval(() => {
-      fetchTodos(); // poll every 5 seconds
-    }, 5000);
+    fetchTodos();
+    const intervalId = setInterval(fetchTodos, 5000);
 
     return () => clearInterval(intervalId);
-  }, [accountId, privateKey]);
+  }, [isWalletReady]);
 
   // -------------------- Filtered Todos --------------------
   const filteredTodos = todos.filter(t =>
     activeFilter === "All" ? true : t.status === activeFilter
   );
 
+  // -------------------- Render --------------------
+  if (!isWalletReady) {
+    return <div className="todo-container">Loading wallet info...</div>;
+  }
+
   return (
     <div className="todo-container">
-
       <Link to="/">home</Link>
       <h2 className="header-title">Todo List</h2>
 
-      {/* Input Section */}
       <div className="input-group">
         <input
           type="text"
           placeholder="Add a new task..."
           value={todoTitle}
-          onChange={(e) => setTodoTitle(e.target.value)}
+          onChange={e => setTodoTitle(e.target.value)}
           className="main-input"
         />
         <button onClick={addTodo} className="add-btn">+</button>
       </div>
 
-      {/* Tabs Section */}
       <div className="tabs-container">
-        {["All", "Active", "Completed"].map((tab) => (
+        {["All", "Active", "Completed"].map(tab => (
           <button
             key={tab}
             className={`tab-item ${activeFilter === tab ? "active-tab" : ""}`}
@@ -930,7 +1229,6 @@ const TodoApp = ({ accountId, privateKey }: TodoAppProps) => {
         ))}
       </div>
 
-      {/* List / Empty State */}
       <div className="content-area">
         {filteredTodos.length > 0 ? (
           <div className="todo-list">
@@ -942,7 +1240,15 @@ const TodoApp = ({ accountId, privateKey }: TodoAppProps) => {
                     {todo.status}
                   </span>
                 </div>
-                <input type="checkbox" name="" id="" />
+                <input
+                  type="checkbox"
+                  className="checkbox"
+                  checked={todo.status === "Completed"}
+                  disabled={todo.status === "Expired"}
+                  onChange={() =>
+                    updateTodoStatus(idx, todo.status === "Completed" ? "Active" : "Completed")
+                  }
+                />
               </div>
             ))}
           </div>

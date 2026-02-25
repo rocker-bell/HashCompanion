@@ -127,14 +127,32 @@
   overflow-y: auto;
 }
 
-.todo-card {
+.checkbox {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: var(--primary-purple); /* makes the check purple in modern browsers */
+  margin-left: 10px;
+}
+
+/* .todo-card {
   background: white;
   border-bottom: 1px solid #edf2f7;
   padding: 15px 5px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* overflow-y: scroll; */
+ 
+} */
+
+.todo-card {
+  background: white;
+  border-bottom: 1px solid #edf2f7;
+  padding: 15px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px; /* optional, gives space between text and checkbox */
 }
 
 .todo-text {

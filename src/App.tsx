@@ -86,6 +86,8 @@ const App = () => {
   // shared wallet state
   const [accountId, setAccountId] = useState<string | null>(null);
   const [privateKey, setPrivateKey] = useState<string | null>(null);
+  const [evmAddress, setEvmAddress] = useState<string | null>(null);
+
 
   return (
     <>
@@ -93,20 +95,21 @@ const App = () => {
       <Routes>
         <Route path="/" element={<DappStructure />} />
         <Route path="/CreateAccount" element={<CreateHederaAccount />} />
-        <Route
-          path="/ConnectWallet"
-          element={
-            <ConnectHederaAccount
-              accountId={accountId}
-              privateKey={privateKey}
-              setAccountId={setAccountId}
-              setPrivateKey={setPrivateKey}
-            />
-          }
-        />
+       <Route
+  path="/ConnectWallet"
+  element={
+    <ConnectHederaAccount
+      accountId={accountId}
+      privateKey={privateKey}
+      setAccountId={setAccountId}
+      setPrivateKey={setPrivateKey}
+      setEvmAddress={setEvmAddress} // ✅ pass the setter
+    />
+  }
+/>
         <Route
           path="/todoApp"
-          element={<TodoApp accountId={accountId} privateKey={privateKey} />}
+          element={<TodoApp accountId={accountId} privateKey={privateKey}  evmAddress={evmAddress} />}
         />
       </Routes>
     </>
