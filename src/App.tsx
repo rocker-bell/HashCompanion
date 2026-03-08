@@ -79,6 +79,7 @@ import DappStructure from "./Components/DappStructure.tsx";
 import CreateHederaAccount from "./Components/CreateAccount.tsx";
 import ConnectHederaAccount from "./Components/ConnectWallet.tsx";
 import TodoApp from "./Components/TodoApp.tsx";
+import Chatbox from "./Components/Chatbox.tsx";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -112,6 +113,7 @@ const App = () => {
           path="/todoApp"
           element={<TodoApp accountId={accountId} privateKey={privateKey}  evmAddress={evmAddress} />}
         />
+        <Route path="chatbox" element={<Chatbox/>} />
       </Routes>
     </>
   );
