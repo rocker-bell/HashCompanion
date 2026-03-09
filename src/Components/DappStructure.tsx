@@ -15,7 +15,7 @@ const DappStructure = () => {
             </svg>
           </div>
           <div className="logo-text">
-            <h1>SimpleNotes</h1>
+            <h1>#HashCompanion</h1>
             <p className="tagline">Your Web3 Notes</p>
           </div>
         </div>
@@ -58,7 +58,7 @@ const DappStructure = () => {
 
         {/* Features */}
         <div className="features-section">
-          <h3>Why Choose SimpleNotes?</h3>
+          <h3>Why Choose HashCompanion?</h3>
           <div className="features-grid">
             <div className="feature-card">
               <div className="feature-icon">
@@ -67,7 +67,7 @@ const DappStructure = () => {
                 </svg>
               </div>
               <h4>Secure Storage</h4>
-              <p>Your notes are encrypted and stored on the blockchain</p>
+              <p>Your operations and information are encrypted and stored on the blockchain</p>
             </div>
             <div className="feature-card">
               <div className="feature-icon">
@@ -89,7 +89,7 @@ const DappStructure = () => {
                 </svg>
               </div>
               <h4>Access Anywhere</h4>
-              <p>Sync your notes across devices with your wallet</p>
+              <p>easy access from Anywhere from just one place. One App contains all.</p>
             </div>
           </div>
         </div>
@@ -102,7 +102,7 @@ const DappStructure = () => {
           <a href="#" className="footer-link">GitHub</a>
           <a href="#" className="footer-link">Support</a>
         </div>
-        <p className="copyright">© 2026 SimpleNotes. All rights reserved.</p>
+        <p className="copyright">© 2026 #HashCompanion. All rights reserved.</p>
       </footer>
     </div>
   );

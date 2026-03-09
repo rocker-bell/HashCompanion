@@ -98,7 +98,16 @@ const App = () => {
       <Routes>
         <Route path="/" element={<DappStructure />} />
         <Route path="/CreateAccount" element={<CreateHederaAccount />} />
-        <Route path="/DexScan" element={<DexScan/>}/>
+        <Route
+  path="/DexScan"
+  element={
+    <DexScan
+      accountId={accountId}
+      privateKey={privateKey}
+      evmAddress={evmAddress}
+    />
+  }
+/>
        <Route
   path="/ConnectWallet"
   element={
