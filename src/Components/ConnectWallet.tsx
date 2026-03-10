@@ -2992,6 +2992,10 @@ const [hasConnected, setHasConnected] = useState(false);
   const handleHCManagerLink = () => {
     navigate("/HCmanager")
   }
+
+  const handleHCAIhelperLink = () => {
+    navigate("/HCAIhelper")
+  }
   // -------------------- Render --------------------
   return (
     <div className="container">
@@ -3074,6 +3078,11 @@ const [hasConnected, setHasConnected] = useState(false);
             <img width="50" height="50" src="https://img.icons8.com/ios-filled/50/test-account.png" alt="test-account"/>
           <p className="app-title">HCManager</p>
         </div>
+         <div className="app-box" onClick={handleHCAIhelperLink}>
+                <img width="48" height="48" src="https://img.icons8.com/pulsar-color/48/bard.png" alt="bard"/>
+            <p className="app-title">HCAIhelper</p>
+        </div>
+        
       </div>
     </div>
   );

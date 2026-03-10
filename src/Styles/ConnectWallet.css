@@ -95,7 +95,7 @@
 
 
 
-.apps-container {
+/* .apps-container {
   width: 90%;
   max-width: 90%;
   min-height: 100px;
@@ -115,10 +115,32 @@
   align-items: center;
   flex-direction: column;
   cursor: pointer;
+} */
+
+
+.apps-container {
+  width: 90%;
+  max-width: 90%;
+  min-height: 100px;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 4 items per row */
+  gap: 25px;
+  border: 1px solid black;
+}
+
+.app-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  cursor: pointer;
+  height: 100px; /* optional */
 }
 
 .app-image {
-
+  width: 35px;
+  height: 35px;
 }
 
 .app-title {
