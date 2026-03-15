@@ -1,6 +1,6 @@
 {
-  "homepage": "https://rocker-bell.github.io/SimpleNotes",
-  "name": "simple-notes",
+  "homepage": "https://rocker-bell.github.io/HashCompanion",
+  "name": "hash-companion",
   "private": true,
   "version": "0.0.0",
   "type": "module",
