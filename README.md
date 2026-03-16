@@ -289,6 +289,13 @@ Handles:
 
 HashCompanion does not collect or transmit any personal data. All user data, including notes, preferences, and account settings, is stored locally in your browser using Chrome's storage API. No data is shared with third parties.
 
+## Assets & Credits
+
+- **Icons & Images:** Some app icons and illustrations are sourced from [Icons8](https://icons8.com).  
+- **Fonts & Styles:** Tailwind CSS utilities and fonts from Google Fonts.  
+- **Other Resources:** Any additional images, graphics, or libraries that contributed to the UI.
+
+
 ## License
 
 MIT License
