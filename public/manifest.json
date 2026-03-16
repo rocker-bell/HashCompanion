@@ -1,10 +1,20 @@
 {
   "manifest_version": 3,
-  "name": "Simple Notes app",
+  "name": "HashCompanion",
   "version": "1.0",
   "description": "Add, view, and delete simple notes",
   "action": {
-    "default_popup": "index.html"
+    "default_popup": "index.html",
+    "default_icon": {
+      "16": "icons/StacksHC.png",
+      "48": "icons/StacksHC.png",
+      "128": "icons/StacksHC.png"
+    }
+  },
+  "icons": {
+    "16": "icons/StacksHC.png",
+    "48": "icons/StacksHC.png",
+    "128": "icons/StacksHC.png"
   },
   "permissions": ["storage"]
 }
