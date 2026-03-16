@@ -285,6 +285,10 @@ Handles:
 
 ---
 
+## HashCompanion Privacy Policy
+
+HashCompanion does not collect or transmit any personal data. All user data, including notes, preferences, and account settings, is stored locally in your browser using Chrome's storage API. No data is shared with third parties.
+
 ## License
 
 MIT License
