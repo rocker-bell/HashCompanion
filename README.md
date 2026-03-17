@@ -82,7 +82,166 @@ HCScanner is a blockchain explorer for your Hedera operations. Track transaction
 
 ---
 
+### **HCAccountManager**
+manage your different account by importing them and switching between imported account to facilitate the switch and the use of multiple account
+
+**Overview**
+
+
+
 ---
+
+<!-- # HashCompanion AI Copilot
+
+**HashCompanion AI** is a Web3 AI assistant and blockchain copilot built on **Hedera Hashgraph** and powered by **Google Gemini AI**.  
+It allows users to interact with their Hedera wallet, summarize chat conversations, ask AI questions, and **execute HBAR transactions directly from natural language commands**.  
+
+This project combines **AI agent capabilities** with **OpenClaw agent-native behavior**, making it suitable for both **AI Agent** and **OpenClaw – Agentic Society** hackathon tracks.
+
+---
+
+## 🔹 Features
+
+### 1. Wallet Awareness
+- Display Hedera **Account ID** and **EVM address**.  
+- Check balance and wallet status directly through AI commands.
+
+**Example Command:**
+What is my wallet?
+
+
+
+---
+
+### 2. AI Chat Assistant
+- Chat with **Google Gemini AI** directly in the app.  
+- Ask general Web3 questions, get explanations, or casual chat.
+
+**Example Command:**
+Explain Hedera in simple terms?
+
+---
+
+---
+
+### 3. Chat Summarization
+- Summarize your conversation history.  
+- AI provides a concise summary of your chat with the assistant.
+
+**Example Command:**
+4. Summarize the chat
+
+
+---
+
+
+---
+
+### 4. HBAR Transaction Execution (Natural Language)
+- Send HBAR to any Hedera account using **plain English commands**.  
+- AI parses amount + recipient and executes transactions securely.
+
+**Example Command:**
+Send 1 HBAR to 0.0.12345
+
+
+---
+
+
+### 6. Agentic / OpenClaw Features
+- Wallet integration + AI assistant = semi-autonomous agent behavior.  
+- Commands and transactions can be extended for **multi-agent workflows**.  
+- Demonstrates **trust-minimized interactions** using Hedera SDK.
+
+--- -->
+
+
+Got it! I’ve cleaned up your README, fixed numbering, removed duplicate separators, and ensured consistency in formatting for copy-paste. Here’s the polished version ready to use:
+
+---
+
+```markdown
+# HashCompanion AI Copilot
+
+**HashCompanion AI** is a Web3 AI assistant and blockchain copilot built on **Hedera Hashgraph** and powered by **Google Gemini AI**.  
+It allows users to interact with their Hedera wallet, summarize chat conversations, ask AI questions, and **execute HBAR transactions directly from natural language commands**.  
+
+This project combines **AI agent capabilities** with **OpenClaw agent-native behavior**, making it suitable for both **AI Agent** and **OpenClaw – Agentic Society** hackathon tracks.
+
+---
+
+## 🔹 Features
+
+### 1. Wallet Awareness
+- Display Hedera **Account ID** and **EVM address**.  
+- Check balance and wallet status directly through AI commands.
+
+**Example Command:**  
+```
+
+What is my wallet?
+
+```
+
+---
+
+### 2. AI Chat Assistant
+- Chat with **Google Gemini AI** directly in the app.  
+- Ask general Web3 questions, get explanations, or casual chat.
+
+**Example Command:**  
+```
+
+Explain Hedera in simple terms
+
+```
+
+---
+
+### 3. Chat Summarization
+- Summarize your conversation history.  
+- AI provides a concise summary of your chat with the assistant.
+
+**Example Command:**  
+```
+
+Summarize the chat
+
+```
+
+---
+
+### 4. HBAR Transaction Execution (Natural Language)
+- Send HBAR to any Hedera account using **plain English commands**.  
+- AI parses amount + recipient and executes transactions securely.
+
+**Example Command:**  
+```
+
+Send 1 HBAR to 0.0.12345
+
+```
+
+---
+
+### 5. Persistent Chat Memory
+- All chat messages are saved in `localStorage` for persistence.  
+- Summarization and AI responses are aware of past context.
+
+---
+
+### 6. Agentic / OpenClaw Features
+- Wallet integration + AI assistant = semi-autonomous agent behavior.  
+- Commands and transactions can be extended for **multi-agent workflows**.  
+- Demonstrates **trust-minimized interactions** using Hedera SDK.
+
+---
+```
+
+---
+
+
+
 
 ## Architecture
 
@@ -97,6 +256,13 @@ graph TD
     E --> H[Hedera SDK]
     H --> I[Hedera Network]
     C --> J[react-toastify - Notifications]
+
+    %% Apps branching from ConnectWallet
+    F --> K[todoApp]
+    F --> L[chatbox]
+    F --> M[DexScann]
+    F --> N[HCManager]
+    F --> O[HCAIhelper]
 ```
 
 ---
