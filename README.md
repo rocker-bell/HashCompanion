@@ -54,7 +54,7 @@ Currently integrated with DApp3.
 **Overview:**  
 HashCompanion acts as a central hub for managing all your Hedera-based applications. Connect wallets, explore decentralized apps, and track your activity in one unified platform.
 
----
+
 
 ### **SimpleNotes**
 A decentralized notes application built on Hedera Hashgraph.  
@@ -63,7 +63,7 @@ Secure, private, and fully owned by you.
 **Overview:**  
 SimpleNotes allows you to create, store, and manage notes directly on the blockchain. By removing centralized authentication, you maintain full control over your data and identity through Hedera wallet integration.
 
----
+
 
 ### **HashMessages**
 A private, fully ownable messaging platform — freedom of communication on the blockchain.
@@ -71,7 +71,7 @@ A private, fully ownable messaging platform — freedom of communication on the 
 **Overview:**  
 HashMessages enables secure, end-to-end encrypted messaging without reliance on central servers. All messages are tied to your Hedera account, giving you full ownership and privacy.
 
----
+
 
 ### **HCScanner**
 Explore and track your Hedera operations.  
@@ -80,7 +80,7 @@ Search account activity and interactions across the network.
 **Overview:**  
 HCScanner is a blockchain explorer for your Hedera operations. Track transactions, inspect account activity, and explore interactions across the network — all from one application.
 
----
+
 
 ### **HCAccountManager**
 
@@ -89,78 +89,6 @@ Manage your different accounts by importing them and easily switching between th
 **Overview**
 HashCompanion Account Manager helps you manage the various accounts you have created through HashCompanion or on the Hedera network, providing smooth usability and effortless switching between accounts
 
-
----
-
-<!-- # HashCompanion AI Copilot
-
-**HashCompanion AI** is a Web3 AI assistant and blockchain copilot built on **Hedera Hashgraph** and powered by **Google Gemini AI**.  
-It allows users to interact with their Hedera wallet, summarize chat conversations, ask AI questions, and **execute HBAR transactions directly from natural language commands**.  
-
-This project combines **AI agent capabilities** with **OpenClaw agent-native behavior**, making it suitable for both **AI Agent** and **OpenClaw – Agentic Society** hackathon tracks.
-
----
-
-## 🔹 Features
-
-### 1. Wallet Awareness
-- Display Hedera **Account ID** and **EVM address**.  
-- Check balance and wallet status directly through AI commands.
-
-**Example Command:**
-What is my wallet?
-
-
-
----
-
-### 2. AI Chat Assistant
-- Chat with **Google Gemini AI** directly in the app.  
-- Ask general Web3 questions, get explanations, or casual chat.
-
-**Example Command:**
-Explain Hedera in simple terms?
-
----
-
----
-
-### 3. Chat Summarization
-- Summarize your conversation history.  
-- AI provides a concise summary of your chat with the assistant.
-
-**Example Command:**
-4. Summarize the chat
-
-
----
-
-
----
-
-### 4. HBAR Transaction Execution (Natural Language)
-- Send HBAR to any Hedera account using **plain English commands**.  
-- AI parses amount + recipient and executes transactions securely.
-
-**Example Command:**
-Send 1 HBAR to 0.0.12345
-
-
----
-
-
-### 6. Agentic / OpenClaw Features
-- Wallet integration + AI assistant = semi-autonomous agent behavior.  
-- Commands and transactions can be extended for **multi-agent workflows**.  
-- Demonstrates **trust-minimized interactions** using Hedera SDK.
-
---- -->
-
-
-
-
----
-
 # HashCompanion AI Copilot
 
 **HashCompanion AI** is a Web3 AI assistant and blockchain copilot built on **Hedera Hashgraph** and powered by **Google Gemini AI**.  
@@ -168,7 +96,7 @@ It allows users to interact with their Hedera wallet, summarize chat conversatio
 
 This project combines **AI agent capabilities** with **OpenClaw agent-native behavior**, making it suitable for both **AI Agent** and **OpenClaw – Agentic Society** hackathon tracks.
 
----
+
 
 ## 🔹 Features
 
@@ -183,7 +111,7 @@ What is my wallet?
 
 ```
 
----
+
 
 ### 2. AI Chat Assistant
 - Chat with **Google Gemini AI** directly in the app.  
@@ -196,7 +124,7 @@ Explain Hedera in simple terms
 
 ```
 
----
+
 
 ### 3. Chat Summarization
 - Summarize your conversation history.  
@@ -209,7 +137,7 @@ Summarize the chat
 
 ```
 
----
+
 
 ### 4. HBAR Transaction Execution (Natural Language)
 - Send HBAR to any Hedera account using **plain English commands**.  
@@ -222,26 +150,18 @@ Send 1 HBAR to 0.0.12345
 
 ```
 
----
+
 
 ### 5. Persistent Chat Memory
 - All chat messages are saved in `localStorage` for persistence.  
 - Summarization and AI responses are aware of past context.
 
----
+
 
 ### 6. Agentic / OpenClaw Features
 - Wallet integration + AI assistant = semi-autonomous agent behavior.  
 - Commands and transactions can be extended for **multi-agent workflows**.  
 - Demonstrates **trust-minimized interactions** using Hedera SDK.
-
----
-
-
----
-
-
-
 
 ## Architecture
 
@@ -265,7 +185,7 @@ graph TD
     F --> O[HCAIhelper]
 ```
 
----
+
 
 ## Technology Stack
 
@@ -290,7 +210,7 @@ graph TD
 * ESLint
 * TypeScript
 
----
+
 
 ## Core Features
 
@@ -315,7 +235,7 @@ graph TD
 * Hot reload support during development
 * Toast-based notifications for errors and actions
 
----
+
 
 ## Project Structure
 
@@ -333,7 +253,7 @@ src/
 └── main.tsx
 ```
 
----
+
 
 ## Environment Configuration
 
@@ -347,7 +267,7 @@ VITE_NETWORK=testnet
 
 Important: Never commit real private keys to version control.
 
----
+
 
 ## Getting Started
 
@@ -385,7 +305,7 @@ npm run build:ext
 4. Retrieve associated EVM address.
 5. Disconnect securely when finished.
 
----
+
 
 ## Key Components
 
@@ -419,7 +339,7 @@ Handles:
 * localStorage persistence
 * Error handling via toast notifications
 
----
+
 
 ## Styling Approach
 
@@ -429,7 +349,7 @@ Handles:
 * Tailwind utility-first styling
 * Custom CSS enhancements
 
----
+
 
 ## Future Enhancements
 
@@ -440,7 +360,6 @@ Handles:
 * Mobile optimization
 * Enhanced authentication mechanisms
 
----
 
 ## Security Considerations
 
@@ -449,7 +368,7 @@ Handles:
 * Users are responsible for securely backing up credentials.
 * Environment variables must not be exposed publicly.
 
----
+
 
 ## HashCompanion Privacy Policy
 
