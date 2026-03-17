@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "HashCompanion",
   "version": "1.0",
-  "description": "Add, view, and delete simple notes",
+  "description": "HashCompanion: a multi-tool extension for Hedera Hashgraph with account management, transactions, and developer utilities.",
   "action": {
     "default_popup": "index.html",
     "default_icon": {
