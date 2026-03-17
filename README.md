@@ -83,10 +83,11 @@ HCScanner is a blockchain explorer for your Hedera operations. Track transaction
 ---
 
 ### **HCAccountManager**
-manage your different account by importing them and switching between imported account to facilitate the switch and the use of multiple account
+
+Manage your different accounts by importing them and easily switching between them to facilitate multi-account usage.
 
 **Overview**
-
+HashCompanion Account Manager helps you manage the various accounts you have created through HashCompanion or on the Hedera network, providing smooth usability and effortless switching between accounts
 
 
 ---
