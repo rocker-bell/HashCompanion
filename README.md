@@ -156,11 +156,10 @@ Send 1 HBAR to 0.0.12345
 --- -->
 
 
-Got it! I’ve cleaned up your README, fixed numbering, removed duplicate separators, and ensured consistency in formatting for copy-paste. Here’s the polished version ready to use:
+
 
 ---
 
-```markdown
 # HashCompanion AI Copilot
 
 **HashCompanion AI** is a Web3 AI assistant and blockchain copilot built on **Hedera Hashgraph** and powered by **Google Gemini AI**.  
@@ -236,7 +235,7 @@ Send 1 HBAR to 0.0.12345
 - Demonstrates **trust-minimized interactions** using Hedera SDK.
 
 ---
-```
+
 
 ---
 
