@@ -202,6 +202,7 @@ graph TD
 
 * @hashgraph/sdk v2.80.0
 * ethers v6.16.0 (commented for future Ethereum support)
+* solidity
 
 ### Tooling
 
@@ -359,6 +360,7 @@ Handles:
 * Multi-chain support
 * Mobile optimization
 * Enhanced authentication mechanisms
+* ensure connected state until disconnect is triggered - (the connected state always shows the evm address under the balance make sure to trigger the connect state )
 
 
 ## Security Considerations

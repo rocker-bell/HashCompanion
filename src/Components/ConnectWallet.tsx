@@ -357,23 +357,23 @@ useEffect(() => {
           
         <div className="app-box" onClick={handleTodoLink}>
           <img src={todoapp_icon} alt="" className="app-image" />
-          <p className="app-title">todoApp</p>
+          <p className="app-title">Task Tracker</p>
         </div>
         <div className="app-box" onClick={handlechatboxLink}>
             <img width="48" height="48" src="https://img.icons8.com/fluency/48/speech-bubble-with-dots--v1.png" alt="speech-bubble-with-dots--v1"/>
-          <p className="app-title">chatbox</p>
+          <p className="app-title">chatbox~</p>
         </div>
          <div className="app-box" onClick={handleDexScannLink}>
             <img width="48" height="48" src="https://img.icons8.com/liquid-glass/48/google-web-search.png" alt="google-web-search"/>
-          <p className="app-title">DexScann</p>
+          <p className="app-title">DexScan</p>
         </div>
         <div className="app-box" onClick={handleHCManagerLink}>
             <img width="50" height="50" src="https://img.icons8.com/ios-filled/50/test-account.png" alt="test-account"/>
-          <p className="app-title">HCManager</p>
+          <p className="app-title">HCAccountManager</p>
         </div>
          <div className="app-box" onClick={handleHCAIhelperLink}>
                 <img width="48" height="48" src="https://img.icons8.com/pulsar-color/48/bard.png" alt="bard"/>
-            <p className="app-title">HCAIhelper</p>
+            <p className="app-title">HCAIcopilot</p>
         </div>
         </div>
         
