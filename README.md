@@ -19,7 +19,7 @@ Everything you need — from notes and messaging to blockchain exploration — i
 
 ## Apps Overview
 
-### **HashCompanion**
+## **HashCompanion**
 Your gateway to Web3 on Hedera — everything in one app.  
 Currently integrated with DApp3.
 
@@ -28,7 +28,7 @@ HashCompanion acts as a central hub for managing all your Hedera-based applicati
 
 
 
-### **SimpleNotes**
+## **SimpleNotes**
 A decentralized notes application built on Hedera Hashgraph.  
 Secure, private, and fully owned by you.
 
@@ -37,7 +37,7 @@ SimpleNotes allows you to create, store, and manage notes directly on the blockc
 
 
 
-### **HashMessages**
+## **HashMessages - chatbox**
 A private, fully ownable messaging platform — freedom of communication on the blockchain.
 
 **Overview:**  
@@ -45,7 +45,7 @@ HashMessages enables secure, end-to-end encrypted messaging without reliance on 
 
 
 
-### **HCScanner**
+## **HCScanner - DexScan**
 Explore and track your Hedera operations.  
 Search account activity and interactions across the network.
 
@@ -54,14 +54,14 @@ HCScanner is a blockchain explorer for your Hedera operations. Track transaction
 
 
 
-### **HCAccountManager**
+## **HCAccountManager**
 
 Manage your different accounts by importing them and easily switching between them to facilitate multi-account usage.
 
 **Overview**
 HashCompanion Account Manager helps you manage the various accounts you have created through HashCompanion or on the Hedera network, providing smooth usability and effortless switching between accounts
 
-## **HashCompanion AI Copilot**
+## **HashCompanion AI Copilot - HCAIhelper**
 
 **HashCompanion AI** is a Web3 AI assistant and blockchain copilot built on **Hedera Hashgraph** and powered by **Google Gemini AI**.  
 It allows users to interact with their Hedera wallet, summarize chat conversations, ask AI questions, and **execute HBAR transactions directly from natural language commands**.  
@@ -70,7 +70,7 @@ This project combines **AI agent capabilities** with **OpenClaw agent-native beh
 
 
 
-## 🔹 Features
+## Features
 
 ### 1. Wallet Awareness
 - Display Hedera **Account ID** and **EVM address**.  
@@ -454,8 +454,13 @@ HashCompanion does not collect or transmit any personal data. All user data, inc
 If you have any feedback or review, feel free to contact me on telegram @HashForce_apex
 
 
+
 ## License
 
-MIT License
+© 2026 rocker_bell. All rights reserved.
 
-You are free to use, modify, and distribute this project in accordance with the license terms.
+This project and its source code are proprietary. 
+
+**Only the owner** (rocker_bell) or **explicitly designated parties** may use, copy, modify, merge, publish, distribute, sublicense, or sell any part of this project.
+
+Any unauthorized use, reproduction, modification, or distribution by others is strictly prohibited.
