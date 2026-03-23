@@ -18,10 +18,19 @@ type Status = "Active" | "Completed" | "Expired";
 const CONTRACT_ID = "0.0.8078086";
 const ONE_WEEK_SECONDS = 7 * 24 * 60 * 60; // 604800 seconds
 
+// interface TodoAppProps {
+//   accountId: string | null;
+//   privateKey: string | null;
+//   evmAddress: string | null;
+// }
+
 interface TodoAppProps {
   accountId: string | null;
   privateKey: string | null;
   evmAddress: string | null;
+  accounts: { accountId: string; privateKey: string; evmAddress?: string }[];
+  activeAccount: number | null;
+  connectAccount: (acc?: { accountId: string; privateKey: string }) => Promise<void>;
 }
 
 interface TodoItem {
@@ -33,7 +42,14 @@ interface TodoItem {
   dueDate: number;
 }
 
-const TodoApp = ({ accountId, privateKey, evmAddress }: TodoAppProps) => {
+const TodoApp = ({
+  accountId,
+  privateKey,
+  evmAddress,
+  accounts,
+  activeAccount,
+  connectAccount
+}: TodoAppProps) => {
   const [todos, setTodos] = useState<TodoItem[]>([]);
   const [todoTitle, setTodoTitle] = useState("");
   const [activeFilter, setActiveFilter] = useState<Status | "All">("All");
@@ -234,9 +250,12 @@ const TodoApp = ({ accountId, privateKey, evmAddress }: TodoAppProps) => {
 
   return (
     <div className="todo-container">
-      <Link to="/ConnectWallet">
-            <img width="35" height="35" src="https://img.icons8.com/nolan/64/left.png" alt="left"/>
-      </Link>
+       <Link
+  to="/ConnectWallet"
+  onClick={() => activeAccount !== null && connectAccount(accounts[activeAccount])}
+>
+  <img width="35" height="35" src="https://img.icons8.com/nolan/64/left.png" alt="left" />
+</Link>
       <h2 className="header-title">Todo List</h2>
 
       <div className="input-group">

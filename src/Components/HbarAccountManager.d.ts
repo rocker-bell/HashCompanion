@@ -13,5 +13,5 @@ type Props = {
     connectAccount: (account: HederaAccount) => void;
     onUseWallet: (index: number) => void;
 };
-declare const HbarAccountManager: ({ accounts, setAccounts, activeAccount, onUseWallet }: Props) => import("react/jsx-runtime").JSX.Element;
+declare const HbarAccountManager: ({ accounts, setAccounts, activeAccount, onUseWallet, connectAccount }: Props) => import("react/jsx-runtime").JSX.Element;
 export default HbarAccountManager;

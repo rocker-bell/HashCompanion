@@ -23,7 +23,8 @@ const HbarAccountManager = ({
   accounts,
   setAccounts,
   activeAccount,
-  onUseWallet
+  onUseWallet,
+  connectAccount
 }: Props) => {
 
   const [accountIdInput, setAccountIdInput] = useState("");
@@ -64,9 +65,12 @@ const HbarAccountManager = ({
     <div className="HCManager_wrapper">
 
       <div className="HCManager_header">
-        <Link to="/ConnectWallet" className="back_btn">
-          ←
-        </Link>
+         <Link
+  to="/ConnectWallet"
+  onClick={() => activeAccount !== null && connectAccount(accounts[activeAccount])}
+>
+  <img width="35" height="35" src="https://img.icons8.com/nolan/64/left.png" alt="left" />
+</Link>
         <h2>Account Manager</h2>
       </div>
 
@@ -83,7 +87,7 @@ const HbarAccountManager = ({
         />
 
         <input
-          type="text"
+          type="password"
           placeholder="Private Key"
           value={privateKeyInput}
           onChange={(e) => setPrivateKeyInput(e.target.value)}

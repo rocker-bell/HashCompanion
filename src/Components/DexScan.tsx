@@ -2,13 +2,28 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../Styles/DexScan.css";
 
+// interface DexScanProps {
+//   accountId: string | null;
+//   privateKey: string | null;
+//   evmAddress: string | null;
+// }
+
 interface DexScanProps {
   accountId: string | null;
   privateKey: string | null;
   evmAddress: string | null;
+  accounts: { accountId: string; privateKey: string; evmAddress?: string }[];
+  activeAccount: number | null;
+  connectAccount: (acc?: { accountId: string; privateKey: string }) => Promise<void>;
 }
 
-const DexScan = ({ accountId, evmAddress }: DexScanProps) => {
+const DexScan = ({
+  accountId,
+  evmAddress,
+  accounts,
+  activeAccount,
+  connectAccount
+}: DexScanProps) => {
 
   const [network, setNetwork] = useState<"mainnet" | "testnet">("testnet");
   const [search, setSearch] = useState("");
@@ -245,7 +260,13 @@ const searchQuery = async () => {
 
     <div className="dex-container">
 
-      <Link to="/ConnectWallet">← Back</Link>
+      
+      <Link
+  to="/ConnectWallet"
+  onClick={() => activeAccount !== null && connectAccount(accounts[activeAccount])}
+>
+  <img width="35" height="35" src="https://img.icons8.com/nolan/64/left.png" alt="left" />
+</Link>
 
       <h2>Dex Scanner</h2>
 

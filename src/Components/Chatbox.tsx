@@ -15,10 +15,19 @@ import "../Styles/Chatbox.css";
 
 const CONTRACT_ID = "0.0.7059508"; // your deployed contract
 
+// interface ChatboxProps {
+//   accountId: string | null;
+//   privateKey: string | null;
+//   evmAddress: string | null;
+// }
+
 interface ChatboxProps {
   accountId: string | null;
   privateKey: string | null;
   evmAddress: string | null;
+  accounts: { accountId: string; privateKey: string; evmAddress?: string }[];
+  activeAccount: number | null;
+  connectAccount: (acc?: { accountId: string; privateKey: string }) => Promise<void>;
 }
 
 interface Message {
@@ -28,7 +37,14 @@ interface Message {
   content: string;
 }
 
-const Chatbox = ({ accountId, privateKey, evmAddress }: ChatboxProps) => {
+const Chatbox = ({
+  accountId,
+  privateKey,
+  evmAddress,
+  accounts,
+  activeAccount,
+  connectAccount
+}: ChatboxProps) => {
   const [status, setStatus] = useState("Connect wallet first");
   const [recipient, setRecipient] = useState("");
   const [message, setMessage] = useState("");
@@ -328,9 +344,12 @@ useEffect(() => {
   // -----------------------------
   return (
     <div className="chatbox-container">
-      <Link to="/ConnectWallet">
-        <img width="35" height="35" src="https://img.icons8.com/nolan/64/left.png" alt="left"/>
-      </Link>
+      <Link
+  to="/ConnectWallet"
+  onClick={() => activeAccount !== null && connectAccount(accounts[activeAccount])}
+>
+  <img width="35" height="35" src="https://img.icons8.com/nolan/64/left.png" alt="left" />
+</Link>
 
       <h2>Chatbox DApp</h2>
       <div className="status">{status}</div>

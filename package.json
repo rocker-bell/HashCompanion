@@ -7,7 +7,6 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "build:ext": "tsc -b && vite build --mode extension",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
