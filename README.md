@@ -429,21 +429,13 @@ HashCompanion does not collect or transmit any personal data. All user data, inc
 
 ## LIVE test
 **Live video**
-```
-    https://www.youtube.com/watch?v=QeH7cK5gslg
-
-```
+[Link Text](https://www.youtube.com/watch?v=QeH7cK5gslg)
+    
 **Live  chrome extension version1.1**
-```
-    https://chromewebstore.google.com/detail/hashcompanion/jlmffipfjhmnknffhdhpaecelheonach?authuser=0&hl=en
-
-```
+[Link Text](https://chromewebstore.google.com/detail/hashcompanion/jlmffipfjhmnknffhdhpaecelheonach?authuser=0&hl=en)
+    
 **Live Web browser version0.1.0**
-
-```
-    https://rocker-bell.github.io/HashCompanion/
-
-```
+[Link Text](https://rocker-bell.github.io/HashCompanion/)
 
 **Collaborators**
 
@@ -452,7 +444,6 @@ HashCompanion does not collect or transmit any personal data. All user data, inc
 
 **FeedBack**
 If you have any feedback or review, feel free to contact me on telegram @HashForce_apex
-
 
 
 ## License
