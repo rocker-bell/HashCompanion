@@ -61,7 +61,7 @@ Manage your different accounts by importing them and easily switching between th
 **Overview**
 HashCompanion Account Manager helps you manage the various accounts you have created through HashCompanion or on the Hedera network, providing smooth usability and effortless switching between accounts
 
-# HashCompanion AI Copilot
+## **HashCompanion AI Copilot**
 
 **HashCompanion AI** is a Web3 AI assistant and blockchain copilot built on **Hedera Hashgraph** and powered by **Google Gemini AI**.  
 It allows users to interact with their Hedera wallet, summarize chat conversations, ask AI questions, and **execute HBAR transactions directly from natural language commands**.  
@@ -178,18 +178,18 @@ graph TD
 ## Technology Stack
 
 ### Frontend
-
+* Javascript
 * React 19
 * TypeScript
 * Vite
-* Tailwind CSS v4
+* Pure CSS styles
 * react-router-dom
 * react-toastify
 
 ### Blockchain
 
 * @hashgraph/sdk v2.80.0
-* ethers v6.16.0 (commented for future Ethereum support)
+* ethers v6.16.0 (for future Ethereum support)
 * solidity
 
 ### Tooling
@@ -198,7 +198,6 @@ graph TD
 * npm
 * ESLint
 * TypeScript
-
 
 
 ## Core Features
@@ -234,8 +233,22 @@ src/
 │   ├── DappStructure.tsx
 │   ├── CreateAccount.tsx
 │   └── ConnectWallet.tsx
+|   |__TodoApp.tsx
+|   |__chatbox.tsx
+|   |__DexScan.tsx
+|   |__HbarAccountManager
+|   |__HCAIhelper.tsx
 ├── Styles/
 │   └── DappLanding.css
+|   |__ConnectWallet.css
+|   |__TodoApp.css
+|   |__chatbox.css
+|   |__DexScan.css
+|   |__HbarAccountManager.css
+|   |__HCAIHelper.css
+|__ utils/
+|____|__aiTools.tx
+|____|__storage.ts
 ├── App.tsx
 ├── App.css
 ├── index.css
@@ -324,14 +337,64 @@ Handles:
 * localStorage persistence
 * Error handling via toast notifications
 
+### TodoApp.tsx
 
+Handles:
+
+* Interaction with the `TodoList.sol` contract (**0.0.8078086**)
+* Adding new todos
+* Fetching previously created todos
+* Updating todo status
+
+
+
+### Chatbox.tsx
+
+Handles:
+
+* Interaction with the `Mailer.sol` contract (**0.0.7059508**)
+* User registration (requires a Hedera EVM wallet)
+* Sending messages using Hedera EVM addresses
+* Fetching sent and received messages
+
+
+
+### DexScan.tsx
+
+Handles:
+
+* Interaction with the Hedera block explorer `HashScan`
+* Switching between environments (Mainnet / Testnet)
+* Fetching transaction history of the currently connected account
+* Searching by `transactionId` or `accountId`
+
+
+
+### HbarAccountManager.tsx
+
+Handles:
+
+* Managing imported account states
+* Simplifying interaction with the HashCompanion Wallet
+* Supporting multiple accounts with instant switching and connection
+* Persisting imported account data in immutable storage (for extension version)
+
+
+
+### HCAIHelper.tsx
+
+Handles:
+
+* Integrated AI agent for user interaction (as described above)
+* Fast communication between the user and a local agent (using Google Generative Language in this implementation)
+* Ability to interact with other modules in the HashCompanion ecosystem (e.g., Chatbox, Transactions, etc.)
 
 ## Styling Approach
 
 * Gradient background
 * Glassmorphism effects
 * Responsive grid layout
-* Tailwind utility-first styling
+* Pure CSS styles
 * Custom CSS enhancements
 
 
@@ -367,7 +430,8 @@ HashCompanion does not collect or transmit any personal data. All user data, inc
 ## LIVE test
 **Live video**
 ```
-    https://player.cloudinary.com/embed/?cloud_name=dzbzr5kxr&public_id=HashCompanion_A_Web3_Companion_for_the_Hedera_Ecosystem_zkk8xa
+    https://www.youtube.com/watch?v=QeH7cK5gslg
+
 ```
 **Live  chrome extension version1.1**
 ```
@@ -381,14 +445,14 @@ HashCompanion does not collect or transmit any personal data. All user data, inc
 
 ```
 
+**Collaborators**
+
+**Presented and developed by [@rocker_bell](https://github.com/rocker_bell)**
 
 
 **FeedBack**
-If you have any feedback or review, feel free to contact me at
-```
-    testdevusecase@proton.me
-    
-```
+If you have any feedback or review, feel free to contact me on telegram @HashForce_apex
+
 
 ## License
 
