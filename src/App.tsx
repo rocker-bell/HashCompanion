@@ -1,78 +1,3 @@
-// import {Routes, Route} from "react-router-dom";
-// import DappStructure from "./Components/DappStructure.tsx";
-// import CreateHederaAccount from "./Components/CreateAccount.tsx";
-// import ConnectHederaAccount from "./Components/ConnectWallet.tsx";
-// import { ToastContainer} from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
-// import TodoApp from "./Components/TodoApp.tsx"
-
-// const App = () => {
-//   return (
-//      <>
-//          <ToastContainer position="top-right" />
-//         <Routes>
-           
-//             <Route path="/" element={<DappStructure/>}/>
-//             <Route path="/CreateAccount" element={<CreateHederaAccount/>}/>
-//             <Route path="/ConnectWallet" element={<ConnectHederaAccount/>} />
-//             <Route path="/todoApp" element={<TodoApp />} />
-//         </Routes>
-//      </>
-
-//   )
- 
-// }
-
-// export default App;
-
-
-// import { Routes, Route } from "react-router-dom";
-// import DappStructure from "./Components/DappStructure.tsx";
-// import CreateHederaAccount from "./Components/CreateAccount.tsx";
-// import ConnectHederaAccount from "./Components/ConnectWallet.tsx";
-// import TodoApp from "./Components/TodoApp.tsx";
-// import { ToastContainer } from "react-toastify";
-// import 'react-toastify/dist/ReactToastify.css';
-// import { useState } from "react";
-
-// const App = () => {
-//   // shared state
-//   const [accountId, setAccountId] = useState<string | null>(null);
-//   const [privateKey, setPrivateKey] = useState<string | null>(null);
-
-//   return (
-//     <>
-//       <ToastContainer position="top-right" />
-//       <Routes>
-//         <Route path="/" element={<DappStructure />} />
-//         <Route path="/CreateAccount" element={<CreateHederaAccount />} />
-//         <Route 
-//           path="/ConnectWallet" 
-//           element={
-//             <ConnectHederaAccount 
-//               accountId={accountId}
-//               privateKey={privateKey}
-//               setAccountId={setAccountId}
-//               setPrivateKey={setPrivateKey}
-//             />
-//           } 
-//         />
-//         <Route 
-//           path="/todoApp" 
-//           element={
-//             <TodoApp
-//               accountId={accountId}
-//               privateKey={privateKey}
-//             />
-//           } 
-//         />
-//       </Routes>
-//     </>
-//   )
-// }
-
-// export default App;
-
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -89,7 +14,8 @@ import ConnectHederaAccount from "./Components/ConnectWallet.tsx";
 import TodoApp from "./Components/TodoApp.tsx";
 import Chatbox from "./Components/Chatbox.tsx";
 import DexScan from "./Components/DexScan.tsx";
-import HCAIhelper from "./Components/HCAIhelper.tsx";
+// import HCAIhelper from "./Components/HCAIhelper.tsx";
+import HCCompanion from "./Components/TestChatbox.tsx";
 // import HCAIhelper from "./Components/AI_Chatbox.tsx";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -128,14 +54,7 @@ useEffect(() => {
   }
 }, [activeAccount])
 
-// useEffect(() => {
-//   if (activeAccount !== null && accounts[activeAccount]) {
-//     const acc = accounts[activeAccount]
-//     setAccountId(acc.accountId)
-//     setPrivateKey(acc.privateKey)
-//     setEvmAddress(acc.evmAddress)
-//   }
-// }, [activeAccount, accounts])
+
 
 const clearAccount = () => {
   setAccountId(null);
@@ -183,32 +102,50 @@ const connectAccount = async (acc?: { accountId: string; privateKey: string }) =
     <>
       <ToastContainer position="top-right" />
       <Routes>
-        <Route path="/Myapps" element={<Myapps/>}/>
+         <Route 
+          path="/Myapps" 
+          element={
+            <Myapps 
+              accounts={accounts} 
+              activeAccount={activeAccount} 
+              connectAccount={connectAccount} 
+            />
+          } 
+        />
         <Route path="/" element={<DappStructure />} />
         <Route path="/CreateAccount" element={<CreateHederaAccount />} />
-        <Route
+    
+
+      <Route
+  path="/testCompanion"
+  element={
+    <HCCompanion
+      accountId={accountId}
+      privateKey={privateKey}
+      evmAddress={evmAddress}
+      accounts={accounts}
+      activeAccount={activeAccount}
+      setActiveAccount={setActiveAccount}
+      connectAccount={connectAccount}
+    />
+  }
+/>
+       
+
+            <Route
   path="/DexScan"
   element={
     <DexScan
       accountId={accountId}
       privateKey={privateKey}
       evmAddress={evmAddress}
+      accounts={accounts}
+      activeAccount={activeAccount}
+      connectAccount={connectAccount}
     />
   }
 />
-       {/* <Route
-  path="/ConnectWallet"
-  element={
-    <ConnectHederaAccount
-      accountId={accountId}
-      privateKey={privateKey}
-      evmAddress={evmAddress}
-      setAccountId={setAccountId}
-      setPrivateKey={setPrivateKey}
-      setEvmAddress={setEvmAddress} // ✅ pass the setter
-    />
-  }
-/> */}
+     
         <Route
   path="/ConnectWallet"
   element={
@@ -219,38 +156,44 @@ const connectAccount = async (acc?: { accountId: string; privateKey: string }) =
       setAccountId={setAccountId}
       setPrivateKey={setPrivateKey}
       setEvmAddress={setEvmAddress}
-      accounts={accounts}           // pass accounts
-      activeAccount={activeAccount} // pass 
+      accounts={accounts}           
+      activeAccount={activeAccount} 
       autoConnect={autoConnect}
       setAutoConnect={setAutoConnect}
     />
   }
 />
-        <Route
-          path="/todoApp"
-          element={<TodoApp accountId={accountId} privateKey={privateKey}  evmAddress={evmAddress} />}
-        />
-        {/* <Route path="chatbox" element={<Chatbox/>} /> */}
-          <Route
-          path="/chatbox"
-          element={<Chatbox accountId={accountId} privateKey={privateKey} evmAddress={evmAddress} />}
-        />
-        {/* <Route path="/HCmanager" element={<HbarAccountManager />} />
-        
-        */}
+    
 
-        {/* <Route
-  path="/HCmanager"
+        <Route
+  path="/TodoApp"
   element={
-    <HbarAccountManager
+    <TodoApp
+      accountId={accountId}
+      privateKey={privateKey}
+      evmAddress={evmAddress}
       accounts={accounts}
-      setAccounts={setAccounts}
       activeAccount={activeAccount}
-      setActiveAccount={setActiveAccount} // just pass the setter
-      clearAccount={clearAccount}        // ✅ pass clearAccount
+      connectAccount={connectAccount}
     />
   }
-/> */}  
+/>
+       
+
+        <Route
+  path="/Chatbox"
+  element={
+    <Chatbox
+      accountId={accountId}
+      privateKey={privateKey}
+      evmAddress={evmAddress}
+      accounts={accounts}
+      activeAccount={activeAccount}
+      connectAccount={connectAccount}
+    />
+  }
+/>
+      
 
             { <Route
   path="/HCmanager"
@@ -259,41 +202,14 @@ const connectAccount = async (acc?: { accountId: string; privateKey: string }) =
       accounts={accounts}
       setAccounts={setAccounts}
       activeAccount={activeAccount}
-      setActiveAccount={setActiveAccount} // ✅ keep it
-      onUseWallet={handleUseWallet}       // ✅ wrapper for full logic
+      setActiveAccount={setActiveAccount} 
+      onUseWallet={handleUseWallet}       
       clearAccount={clearAccount}
       connectAccount={connectAccount}
     />
   }
 /> }
 
-                {/* <Route
-  path="/HCmanager"
-  element={
-    <HbarAccountManager
-      accounts={accounts}
-      setAccounts={setAccounts}
-      activeAccount={activeAccount}
-      setActiveAccount={setActiveAccount}
-      clearAccount={clearAccount}
-      connectAccount={connectAccount} // pass your connect function
-    />
-  }
-/> */}
-        <Route path="/HCAIhelper" element={<HCAIhelper 
-              accountId={accountId}
-              privateKey={privateKey}
-              evmAddress={evmAddress} />} />
-        {/* <Route
-          path="/HCAIhelper"
-          element={
-            <HCAIhelper
-              accountId={accountId}
-              privateKey={privateKey}
-              evmAddress={evmAddress}
-            />
-          }
-        /> */}
       </Routes>
     </>
   );

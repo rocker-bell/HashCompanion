@@ -1,0 +1,282 @@
+import { useState, useEffect } from "react";
+import { GoogleGenerativeAI } from "@google/generative-ai";
+import { Link } from "react-router-dom";
+import "../Styles/HCAIHelper.css";
+import flash from "../assets/flash.png";
+
+import { ethers } from "ethers";
+import {
+  Client,
+  AccountId,
+  PrivateKey,
+  ContractCallQuery,
+  ContractExecuteTransaction,
+  ContractFunctionParameters,
+  Hbar,
+} from "@hashgraph/sdk";
+import { toast } from "react-toastify";
+
+const CONTRACT_ID = "0.0.7059508"; // your deployed contract
+
+type ChatMessage = {
+  sender: "user" | "ai";
+  text: string;
+};
+
+type Message = {
+  timestamp: string;
+  sender?: string;
+  recipient?: string;
+  content: string;
+};
+
+type HCAIHelperProps = {
+  evmAddress: string | null;
+  privateKey: string | null;
+  accountId: string | null;
+};
+
+const HCCompanion = ({ evmAddress, privateKey, accountId }: HCAIHelperProps) => {
+  const [message, setMessage] = useState("");
+  const [chat, setChat] = useState<ChatMessage[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [activesend, setactivesend] = useState(false);
+
+  const [hcSentMessages, setHcSentMessages] = useState<Message[]>([]);
+  const [hcReceivedMessages, setHcReceivedMessages] = useState<Message[]>([]);
+
+  // -----------------------------
+  // Initialize Gemini AI
+  // -----------------------------
+  const API = import.meta.env.VITE_GEMINI_API_KEY as string;
+  const API_url = atob(API);
+  const genAI = new GoogleGenerativeAI(API_url);
+  const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+
+  // -----------------------------
+  // Hedera Client
+  // -----------------------------
+  const createClient = () => {
+    if (!accountId || !privateKey) throw new Error("Wallet not connected");
+    const client =
+      import.meta.env.VITE_NETWORK === "mainnet"
+        ? Client.forMainnet()
+        : Client.forTestnet();
+    client.setOperator(AccountId.fromString(accountId), PrivateKey.fromStringECDSA(privateKey));
+    client.setMaxQueryPayment(new Hbar(5));
+    return client;
+  };
+
+  // -----------------------------
+  // Decode Hedera Messages
+  // -----------------------------
+  const decodeMessages = (result: any): Message[] => {
+    try {
+      const bytes = result.bytes;
+      const abi = [
+        "function getMessages() view returns ((uint256 timestamp,address sender,address recipient,string content)[])"
+      ];
+      const iface = new ethers.Interface(abi);
+      const decoded = iface.decodeFunctionResult("getMessages", bytes);
+      return decoded[0].map((m: any) => ({
+        timestamp: new Date(Number(m.timestamp) * 1000).toLocaleString(),
+        sender: m.sender,
+        recipient: m.recipient,
+        content: m.content
+      }));
+    } catch (err) {
+      console.error("Decode error:", err);
+      return [];
+    }
+  };
+
+  // -----------------------------
+  // Fetch Messages (on-demand)
+  // -----------------------------
+  const fetchHcMessages = async (type: "sent" | "received") => {
+    if (!accountId || !privateKey || !evmAddress) {
+      toast.error("Wallet not connected");
+      return;
+    }
+    try {
+      const client = createClient();
+      const funcName = type === "sent" ? "getSentMessages" : "getReceivedMessages";
+      const query = await new ContractCallQuery()
+        .setContractId(CONTRACT_ID)
+        .setGas(1_000_000)
+        .setFunction(funcName, new ContractFunctionParameters().addAddress(evmAddress))
+        .execute(client);
+
+      const decoded = decodeMessages(query);
+      if (type === "sent") setHcSentMessages(decoded);
+      else setHcReceivedMessages(decoded);
+
+      toast.success(`${type === "sent" ? "Sent" : "Received"} messages fetched! ✅`);
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to fetch messages ❌");
+    }
+  };
+
+  // -----------------------------
+  // Send Message (on-demand)
+  // -----------------------------
+  const sendHcMessage = async (recipientAddr: string, msg: string) => {
+    if (!accountId || !privateKey) {
+      toast.error("Wallet not connected");
+      return;
+    }
+    try {
+      const client = createClient();
+      const tx = await new ContractExecuteTransaction()
+        .setContractId(CONTRACT_ID)
+        .setGas(500_000)
+        .setFunction(
+          "sendMessage",
+          new ContractFunctionParameters().addAddress(recipientAddr).addString(msg)
+        )
+        .execute(client);
+
+      await tx.getReceipt(client);
+      toast.success("Message sent via Hedera! ✅");
+      setMessage("");
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to send message ❌");
+    }
+  };
+
+  // -----------------------------
+  // AI Intent Parsing
+  // -----------------------------
+  const detectIntent = (msg: string) => {
+    const text = msg.toLowerCase();
+    if (text.startsWith("send hc message to")) return "send_hc_message";
+    if (text.includes("fetch sent messages")) return "fetch_sent";
+    if (text.includes("fetch received messages")) return "fetch_received";
+    return "ai_chat";
+  };
+
+  const handleSendMessage = async () => {
+    if (!message.trim()) return;
+    const userMessage: ChatMessage = { sender: "user", text: message };
+    setChat(prev => [...prev, userMessage]);
+    setLoading(true);
+
+    const intent = detectIntent(message);
+
+    try {
+      if (intent === "send_hc_message") {
+        const match = message.match(/send hc message to (0x[a-fA-F0-9]{40}):(.*)/i);
+        if (!match) {
+          setChat(prev => [...prev, { sender: "ai", text: "Invalid format. Use: send hc message to 0x...:Your message" }]);
+        } else {
+          await sendHcMessage(match[1], match[2].trim());
+          setChat(prev => [...prev, { sender: "ai", text: "Message sent via Hedera! ✅" }]);
+        }
+      } else if (intent === "fetch_sent") {
+        await fetchHcMessages("sent");
+        setChat(prev => [...prev, { sender: "ai", text: "Sent messages fetched! ✅" }]);
+      } else if (intent === "fetch_received") {
+        await fetchHcMessages("received");
+        setChat(prev => [...prev, { sender: "ai", text: "Received messages fetched! ✅" }]);
+      } else {
+        // General AI chat
+        const result = await model.generateContent("User: " + message);
+        setChat(prev => [...prev, { sender: "ai", text: result.response.text() }]);
+      }
+    } catch (err) {
+      console.error(err);
+      setChat(prev => [...prev, { sender: "ai", text: "Error processing request ⚠️" }]);
+    }
+
+    setLoading(false);
+  };
+
+  // -----------------------------
+  // System Prompt (kept from original)
+  // -----------------------------
+  const systemPrompt = `
+You are HashCompanion AI.
+You are a Web3 assistant built on Hedera.
+Responsibilities:
+- Explain blockchain activity
+- Help users understand their wallet
+- Summarize messages or notes
+- Provide simple Web3 explanations
+User wallet context:
+Account ID: ${accountId}
+EVM Address: ${evmAddress}
+Always explain things simply.
+`;
+
+  return (
+    <div className="AI_chatbox_wrapper">
+      <Link to="/ConnectWallet">
+        <img width="35" height="35" src="https://img.icons8.com/nolan/64/left.png" alt="left" />
+      </Link>
+
+      <div className="AI_chatbox_container">
+        <div className="AI_chatbox_header">
+          <span>HC Companion AI</span>
+          <span className="HCAI_xpbar">
+            xp
+            <img className="image" src={flash} alt="" />
+          </span>
+        </div>
+
+        {/* Messages */}
+        <div className="AI_chatbox_messages">
+          {chat.map((msg, idx) => (
+            <div key={idx} className={`chat_message ${msg.sender}`}>{msg.text}</div>
+          ))}
+          {loading && <div className="chat_message ai">Thinking...</div>}
+        </div>
+
+        {/* Input */}
+        <div className="AI_chatbox_input">
+          <input
+            type="text"
+            value={message}
+            onChange={e => setMessage(e.target.value)}
+            placeholder="Ask AI or send/fetch HC message..."
+            onKeyDown={e => e.key === "Enter" && handleSendMessage()}
+          />
+          <button
+            onClick={handleSendMessage}
+            className={activesend ? "active" : ""}
+            onMouseEnter={() => setactivesend(true)}
+            onMouseLeave={() => setactivesend(false)}
+          >
+            {activesend ? (
+              <img width="24" height="24" src="https://img.icons8.com/fluency/48/sent.png" alt="sent" />
+            ) : "Send"}
+          </button>
+        </div>
+
+        {/* Hedera Messages Preview */}
+        <div className="messages-section">
+          <h3>Received Hedera Messages</h3>
+          {hcReceivedMessages.map((msg, idx) => (
+            <div key={idx} className="message-card received-message">
+              <b>{msg.sender}</b>
+              <p>{msg.content}</p>
+              <small>{msg.timestamp}</small>
+            </div>
+          ))}
+
+          <h3>Sent Hedera Messages</h3>
+          {hcSentMessages.map((msg, idx) => (
+            <div key={idx} className="message-card sent-message">
+              <b>To: {msg.recipient}</b>
+              <p>{msg.content}</p>
+              <small>{msg.timestamp}</small>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default HCCompanion;

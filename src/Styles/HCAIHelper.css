@@ -262,6 +262,8 @@
 } */
 
 .info {
+  font-weight: bold;
+  font-size: larger;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -270,7 +272,7 @@
 }
 
 .wallet-info-container, .container-paragraph {
-  border: 1px solid black;
+  /* border: 1px solid black; */
   min-width: 250px;
   display: flex;
   justify-content: space-between;
@@ -293,4 +295,50 @@
 .AI_chatbox_messages::-webkit-scrollbar-thumb {
   background: rgba(0,0,0,0.2);
   border-radius: 3px;
+}
+
+.message-container {
+  display: none;
+}
+
+.message-container.activeFetch {
+
+  display:  flex;
+  width: 100%;
+  padding: 5px;
+  height: auto;
+  align-items: center;
+  flex-direction: column;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.messages-section-header {
+  background-color: grey;
+  color: black;
+}
+
+.btn-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.discard-btn {
+  
+  background-color: red;
+  color: white;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.message-card {
+  width: 100%;
+  color: white;
+  font-weight: bold;
+}
+
+.msg-header {
+  font-weight: bold;
+  font-size: larger;
 }

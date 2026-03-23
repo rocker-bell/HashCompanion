@@ -1,31 +1,3 @@
-<!-- # HashCompanion
-
-Your Companion into web3 of hedera, Everything- One app.
-
-currently integrated dapp3
-
-
-# SimpleNotes
-
-Web3 Notes Application built on Hedera Hashgraph.
-
-# HashMessages
-
-Your way into the freedom of communication fully private and fully ownable
-
-# HCScanner
-
-find Infomation regarding your operation within the scope of the hedera network and search for other interactions...
-
----
-
-## Overview
-
-SimpleNotes is a decentralized notes application that leverages blockchain technology for secure authentication and account management.
-
-The application removes reliance on centralized authentication servers and gives users ownership of their blockchain identity through Hedera-based account creation and wallet connection. -->
-
-
 # HashCompanion Suite 
 
 Welcome to **HashCompanion**, your gateway into the Web3 ecosystem on **Hedera Hashgraph**.  
@@ -150,18 +122,34 @@ Send 1 HBAR to 0.0.12345
 
 ```
 
-
-
 ### 5. Persistent Chat Memory
 - All chat messages are saved in `localStorage` for persistence.  
 - Summarization and AI responses are aware of past context.
 
+### 6. Send messages 
+- is a functionality where the connected -registered user (mandatory) on the chatbox dapp can send a message to another registered user
 
 
-### 6. Agentic / OpenClaw Features
+**Example Command:**  
+```
+
+Send to <evm_address> <message>
+
+```
+### 7. overview of sent/received messages
+- is a functionality where the HashCompanion copilot fetches the sent or received messages on demande
+**Example Command:**  
+```
+fetch <sent/received>
+
+```
+
+### 8. Agentic / OpenClaw Features
 - Wallet integration + AI assistant = semi-autonomous agent behavior.  
 - Commands and transactions can be extended for **multi-agent workflows**.  
 - Demonstrates **trust-minimized interactions** using Hedera SDK.
+
+
 
 ## Architecture
 
@@ -264,6 +252,8 @@ Create a `.env` file in the root directory:
 VITE_OPERATOR_ID=your_operator_id
 VITE_OPERATOR_KEY=your_private_key
 VITE_NETWORK=testnet
+VITE_GEMINI_API_KEY=your_api_key (API should be encoded in base64 - our HashCompanion copilot decodes it and initiate connection)
+
 ```
 
 Important: Never commit real private keys to version control.
@@ -289,12 +279,6 @@ npm run dev
 ```bash
 npm run build
 ```
-### Build for Production extension mode
-
-```bash
-npm run build:ext
-```
-
 
 ---
 
@@ -370,8 +354,6 @@ Handles:
 * Users are responsible for securely backing up credentials.
 * Environment variables must not be exposed publicly.
 
-
-
 ## HashCompanion Privacy Policy
 
 HashCompanion does not collect or transmit any personal data. All user data, including notes, preferences, and account settings, is stored locally in your browser using Chrome's storage API. No data is shared with third parties.
@@ -382,6 +364,31 @@ HashCompanion does not collect or transmit any personal data. All user data, inc
 - **Fonts & Styles:** Tailwind CSS utilities and fonts from Google Fonts.  
 - **Other Resources:** Any additional images, graphics, or libraries that contributed to the UI.
 
+## LIVE test
+**Live video**
+```
+    https://player.cloudinary.com/embed/?cloud_name=dzbzr5kxr&public_id=HashCompanion_A_Web3_Companion_for_the_Hedera_Ecosystem_zkk8xa
+```
+**Live  chrome extension version1.1**
+```
+    https://chromewebstore.google.com/detail/hashcompanion/jlmffipfjhmnknffhdhpaecelheonach?authuser=0&hl=en
+
+```
+**Live Web browser version0.1.0**
+
+```
+    https://rocker-bell.github.io/HashCompanion/
+
+```
+
+
+
+**FeedBack**
+If you have any feedback or review, feel free to contact me at
+```
+    testdevusecase@proton.me
+    
+```
 
 ## License
 
