@@ -428,14 +428,12 @@ HashCompanion does not collect or transmit any personal data. All user data, inc
 - **Other Resources:** Any additional images, graphics, or libraries that contributed to the UI.
 
 ## LIVE test
-**Live video**
-[Link Text](https://www.youtube.com/watch?v=QeH7cK5gslg)
+
+- [Live Video](https://www.youtube.com/watch?v=QeH7cK5gslg)
+
+- [Live Chrome Extension v1.1](https://chromewebstore.google.com/detail/hashcompanion/jlmffipfjhmnknffhdhpaecelheonach?authuser=0&hl=en)
     
-**Live  chrome extension version1.1**
-[Link Text](https://chromewebstore.google.com/detail/hashcompanion/jlmffipfjhmnknffhdhpaecelheonach?authuser=0&hl=en)
-    
-**Live Web browser version0.1.0**
-[Link Text](https://rocker-bell.github.io/HashCompanion/)
+- [Live Web Browser v0.1.0](https://rocker-bell.github.io/HashCompanion/)
 
 **Collaborators**
 
