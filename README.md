@@ -398,7 +398,6 @@ Handles:
 * Custom CSS enhancements
 
 
-# HashCompanion
 
 ##  Full Documentation
 👉 [View the PDF](documentation/HashCompanion_documentation.pdf)
@@ -417,6 +416,7 @@ Handles:
 
 ##  Product Roadmap
 ![Roadmap](documentation/roadmap.png)
+
 
 
 ## Future Enhancements
@@ -473,3 +473,7 @@ This project and its source code are proprietary.
 **Only the owner** (rocker_bell) or **explicitly designated parties** may use, copy, modify, merge, publish, distribute, sublicense, or sell any part of this project.
 
 Any unauthorized use, reproduction, modification, or distribution by others is strictly prohibited.
+
+##  Note
+
+> This project and repository are **actively maintained** and **regularly updated**.
