@@ -1,7 +1,7 @@
 .container {
   position: relative;
   width: 450px;
-  min-height: 700px;
+  min-height: 600px;
   padding: 5px;
   display: flex;
   flex-direction: column;
@@ -10,10 +10,16 @@
 }
 
 .header-container {
+  width: 100%;
+  /* border: 1px solid black; */
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
   align-items: start;
+}
+
+.header1 {
+  font-weight: bold;
 }
 
 .input {
@@ -162,7 +168,7 @@
 } */
 
 .apps-container {
-bottom: 85px;
+bottom: 10px;
   position: absolute;
   min-height: 20%;
   width: 100%;

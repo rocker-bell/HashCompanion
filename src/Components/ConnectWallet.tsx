@@ -256,7 +256,7 @@ useEffect(() => {
        <Link to="/">
             <img width="35" height="35" src="https://img.icons8.com/nolan/64/left.png" alt="left"/>
       </Link>
-      <h2>Connect Hedera Account</h2>
+      <h2 className="header1">Connect Hedera Account</h2>
       </div>
 
       <input
