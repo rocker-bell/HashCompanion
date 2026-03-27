@@ -398,6 +398,26 @@ Handles:
 * Custom CSS enhancements
 
 
+# HashCompanion
+
+##  Full Documentation
+👉 [View the PDF](documentation/HashCompanion_documentation.pdf)
+
+---
+
+##  Architecture Overview
+![Architecture](documentation/architecture-structure.png)
+
+---
+
+##  Navigation Flow
+![Navigation](documentation/navigation.png)
+
+---
+
+##  Product Roadmap
+![Roadmap](documentation/roadmap.png)
+
 
 ## Future Enhancements
 
