@@ -423,12 +423,12 @@ Handles:
 ## Future Enhancements
 
 * Ethereum wallet integration
-* Note creation and management interface
 * Encryption and decryption of notes
 * Multi-chain support
 * Mobile optimization
 * Enhanced authentication mechanisms
 * ensure connected state until disconnect is triggered - (the connected state always shows the evm address under the balance make sure to trigger the connect state )
+* HashCompanionStore - decentralized marketplace for HashCompanion Apps
 
 
 ## Security Considerations
