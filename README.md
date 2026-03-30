@@ -149,7 +149,8 @@ fetch <sent/received>
 - Commands and transactions can be extended for **multi-agent workflows**.  
 - Demonstrates **trust-minimized interactions** using Hedera SDK.
 
-
+##  *Upcoming* - **HashCompanionStore**
+- decentralized Appstore built for hedera Hybrid Apps where you can add your favorite utility App to your HashCompanion or build and publish yours!
 
 ## Architecture
 
