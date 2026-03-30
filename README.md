@@ -403,17 +403,17 @@ Handles:
 ##  Full Documentation
 👉 [View the PDF](documentation/HashCompanion_documentation.pdf)
 
----
+
 
 ##  Architecture Overview
 ![Architecture](documentation/architecture-structure.png)
 
----
+
 
 ##  Navigation Flow
 ![Navigation](documentation/navigation.png)
 
----
+
 
 ##  Product Roadmap
 ![Roadmap](documentation/roadmap.png)
