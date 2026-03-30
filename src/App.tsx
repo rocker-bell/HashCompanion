@@ -20,7 +20,8 @@ import HCCompanion from "./Components/TestChatbox.tsx";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import HbarAccountManager from "./Components/HbarAccountManager.tsx";
-import Myapps from "./Components/Myapps.tsx"
+import Myapps from "./Components/Myapps.tsx";
+import HederaAppsMarketplace from "./Components/HederaAppsMarketplace.tsx";
 const App = () => {
   const navigate = useNavigate()
   // shared wallet state
@@ -209,6 +210,11 @@ const connectAccount = async (acc?: { accountId: string; privateKey: string }) =
     />
   }
 /> }
+
+
+      {
+        <Route path="/hederaAppsMarketplace" element={<HederaAppsMarketplace/>} />
+      }
 
       </Routes>
     </>
