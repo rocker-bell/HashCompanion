@@ -7,8 +7,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "deploy": "gh-pages -d dist",
-    "build:ext": "tsc -b && vite build --mode extension"
+    "deploy": "gh-pages -d dist"
+    
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
