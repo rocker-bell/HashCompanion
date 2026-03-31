@@ -150,7 +150,7 @@ fetch <sent/received>
 - Demonstrates **trust-minimized interactions** using Hedera SDK.
 
 ##  *Upcoming* - **HashCompanionStore - beta**
-- decentralized Appstore built for hedera Hybrid Apps where you can add your favorite utility App to your HashCompanion or build and publish yours!, contractId : 0.0.8454022
+- decentralized Appstore built for hedera Hybrid Apps where you can add your favorite utility App to your HashCompanion or build and publish yours!, (contractId : **0.0.8454022**)
 
 ## *Upcoming* - **HashCompanionDeveloppementConsole - beta**
 - decentralized plateform-developpement console for HashCompanionStore Apps built on hedera where developpers can Add and publish their apps.
