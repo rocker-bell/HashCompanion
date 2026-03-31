@@ -155,7 +155,7 @@ fetch <sent/received>
 ## *Upcoming* - **HashCompanionDeveloppementConsole - beta**
 - decentralized plateform-developpement console for HashCompanionStore Apps built on hedera where developpers can Add and publish their apps.
 
-[Link - to repo](./https://github.com/rocker-bell/HashCompanionDevelopperConsole)
+- [HashCompanion DevelopperConsole](https://github.com/rocker-bell/HashCompanionDevelopperConsole)
 
 ## Architecture
 
