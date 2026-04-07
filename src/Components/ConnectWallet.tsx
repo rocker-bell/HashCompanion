@@ -242,6 +242,10 @@ const handleHCAICompanionhelperLink = () => {
   navigate('/testCompanion')
 }
 
+const handlehuderaMarketplaceLink = () => {
+  navigate('/hederaAppsMarketplace')
+}
+
 useEffect(() => {
   if (autoConnect && accountId && privateKey && !hasConnected) {
     connectAccount();
@@ -386,6 +390,16 @@ useEffect(() => {
                 <img width="48" height="48" src="https://img.icons8.com/pulsar-color/48/bard.png" alt="bard"/>
             <p className="app-title">HCAIcopilot</p>
         </div>
+
+
+         <div className="app-box" onClick={handlehuderaMarketplaceLink}>
+              <img width="48" height="48" src="https://img.icons8.com/nolan/64/online-shop.png" alt="online-shop"/>
+            <p className="app-title">HashCompanionStore</p>
+        </div>
+
+
+
+      
         </div>
         
       </div>

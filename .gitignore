@@ -13,7 +13,7 @@ dist-ssr
 *.local
 DRAFT.TXT
 .env.local
-
+Draft
 
 # Editor directories and files
 .vscode/*
