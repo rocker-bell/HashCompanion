@@ -153,7 +153,27 @@ fetch <sent/received>
 - decentralized Appstore built for hedera Hybrid Apps where you can add your favorite utility App to your HashCompanion or build and publish yours!, (contractId : **0.0.8454022**)
 
 ## *Upcoming* - **HashCompanionDeveloppementConsole - beta**
-- decentralized plateform-developpement console for HashCompanionStore Apps built on hedera where developpers can Add and publish their apps.
+
+HashCompanion Developer Console is an application development platform built specifically for HashCompanionStore, the featured suite of HashCompanion applications. The console allows developers to create, deploy, and manage multiple utility applications that can be added to the suite. Applications within the suite can have different purposes and types, such as free, paid, or open-source beta.
+The Developer Console integrates multiple technologies and functionalities, including:
+1.	Hedera Endpoint Integration 
+o	Works with the deployed and verified contract HashCompanionStore.sol (ID: 0.0.8454022). 
+o	Handles deployment and publishing of appInfo, which includes: 
+    -	appName 
+    -	appDescription 
+    -	appMetadata 
+    -	appImage 
+    -	appStature 
+    -	appType 
+2.	Cloudinary for Image Hosting 
+ -	Hosts application images. 
+ -	Images are served through a shareable URL saved both in the Hedera backend and fetched through our endpoint. 
+3.	Google Drive Storage 
+ -	Stores application files, either on personal storage or a workspace. 
+ -	Each app preferably has its own dedicated file containing the source code. 
+4.	Metadata Management 
+ -	Metadata is derived from the stored application files. 
+ -	Used to fetch files by comparing metadata, ensuring apps are correctly served within HashCompanionStore.
 
 - [HashCompanion DevelopperConsole](https://github.com/rocker-bell/HashCompanionDevelopperConsole)
 
