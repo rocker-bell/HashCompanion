@@ -1,3 +1,9 @@
 import "../Styles/HederaAppsMarketplace.css";
-declare const HederaAppsMarketplace: () => import("react/jsx-runtime").JSX.Element;
+interface Props {
+    accountId: string | null;
+    privateKey: string | null;
+    evmAddress: string | null;
+    network?: "testnet" | "mainnet";
+}
+declare const HederaAppsMarketplace: ({ accountId, privateKey, network }: Props) => import("react/jsx-runtime").JSX.Element;
 export default HederaAppsMarketplace;

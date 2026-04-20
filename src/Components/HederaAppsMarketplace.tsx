@@ -35,7 +35,7 @@ interface Props {
 const HederaAppsMarketplace = ({
   accountId,
   privateKey,
-  evmAddress,
+ 
   network = "testnet"
 }: Props) => {
 
