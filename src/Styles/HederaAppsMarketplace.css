@@ -1,30 +1,18 @@
-/* .hederaAppsMarketplace_wrapper {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: self-start; 
-    flex-direction: column;
-    padding: 5px;
-    gap: 10px;
-}
-
-.MarketplaceHeader_container {
-      width: 100%;
-   
-    display: flex;
-    justify-content: flex-start;
-    align-items: center; 
-} */
-
 
 /* ===== PAGE WRAPPER ===== */
 .hederaAppsMarketplace_wrapper {
   padding: 20px;
   background: #0f1115;
-  min-height: 100vh;
+
+  min-height: 100%;
   color: white;
   font-family: Arial, sans-serif;
+  /* display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column; */
+  display: flex;
+  flex-direction: column;
 }
 
 /* ===== HEADER ===== */
@@ -32,6 +20,7 @@
   display: flex;
   align-items: center;
   margin-bottom: 20px;
+  flex-direction: column;
 }
 
 .MarketplaceHeader_container img {
@@ -41,6 +30,49 @@
 
 .MarketplaceHeader_container img:hover {
   transform: translateX(-3px);
+}
+ .MarketplaceHeader_header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    flex-direction: row;
+}
+
+/* .MarketplaceHeader_search_input {
+    background-color: white;
+}  */
+
+.MarketplaceHeader_search_container {
+  display: flex;
+  align-items: center;
+  background: #1a1d24;
+  border-radius: 10px;
+  padding: 5px 10px;
+  gap: 8px;
+}
+
+.MarketplaceHeader_search_input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  flex: 1;
+}
+
+.search-btn {
+  background: #2a2f3a;
+  border: none;
+  padding: 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-btn:hover {
+  background: #3a4150;
 }
 
 /* ===== TITLE ===== */
@@ -61,6 +93,7 @@
 
 /* ===== GRID (PLAY STORE STYLE) ===== */
 .apps-grid {
+    border: 3px solid white;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 18px;
@@ -70,6 +103,8 @@
 /* ===== APP CARD ===== */
 .app-card {
   background: #1a1d24;
+  width: 120px;
+  height: 150px;
   border-radius: 14px;
   overflow: hidden;
   padding: 12px;
@@ -134,4 +169,63 @@
 /* ===== LOADING TEXT ===== */
 .hederaAppsMarketplace_wrapper p {
   font-size: 14px;
+}
+
+/* home btn */
+
+
+.home-btn {
+  background: #1f2937;
+  padding: 8px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  transition: 0.2s;
+}
+
+.home-btn:hover {
+  background: #374151;
+  transform: scale(1.05);
+}
+
+/* pagination */
+.content {
+  flex: 1;
+}
+
+.pagination {
+    
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 25px;
+  gap: 12px;
+}
+
+.pagination-btn {
+  background: #1f2937;
+  border: none;
+  color: white;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination-btn:hover {
+  background: #374151;
+}
+
+.pagination-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.pagination-info {
+  font-size: 14px;
+  color: #ccc;
 }
