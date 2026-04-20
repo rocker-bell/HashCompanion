@@ -213,7 +213,14 @@ const connectAccount = async (acc?: { accountId: string; privateKey: string }) =
 
 
       {
-        <Route path="/hederaAppsMarketplace" element={<HederaAppsMarketplace/>} />
+
+        <Route  path="/hederaAppsMarketplace" element={ 
+        <HederaAppsMarketplace
+  accountId={accountId}
+  privateKey={privateKey}
+  
+  evmAddress={evmAddress}
+/> } />
       }
 
       </Routes>
