@@ -22,6 +22,7 @@ import "react-toastify/dist/ReactToastify.css";
 import HbarAccountManager from "./Components/HbarAccountManager.tsx";
 import Myapps from "./Components/Myapps.tsx";
 import HederaAppsMarketplace from "./Components/HederaAppsMarketplace.tsx";
+import HashCompanionStoreApp from "./Components/HashCompanionStoreApp.tsx";
 const App = () => {
   const navigate = useNavigate()
   // shared wallet state
@@ -221,6 +222,24 @@ const connectAccount = async (acc?: { accountId: string; privateKey: string }) =
   
   evmAddress={evmAddress}
 /> } />
+      }
+
+      {
+        
+                    <Route
+          path="/App/:AppName/:AppID"
+          element={
+            accountId && privateKey && evmAddress ? (
+              <HashCompanionStoreApp
+                accountId={accountId}
+                privateKey={privateKey}
+                evmAddress={evmAddress}
+              />
+            ) : (
+              <div>Please connect wallet</div>
+            )
+          }
+        />
       }
 
       </Routes>

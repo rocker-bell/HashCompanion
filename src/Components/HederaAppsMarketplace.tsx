@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../Styles/HederaAppsMarketplace.css";
 import { useState, useEffect } from "react";
+
 import { Search, ChevronLeft, ChevronRight, Home } from "lucide-react";
 
 import {
@@ -40,6 +41,8 @@ const HederaAppsMarketplace = ({
 }: Props) => {
 
   const contractId = "0.0.8454022";
+
+  const navigate = useNavigate()
 
   const [apps, setApps] = useState<AppItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -98,6 +101,7 @@ const HederaAppsMarketplace = ({
           const decoded = abiCoder.decode(appStructABI, response.bytes)[0];
 
           emptyStreak = 0;
+                console.log(results);
 
           results.push({
             appId: Number(decoded.appId),
@@ -160,6 +164,13 @@ const HederaAppsMarketplace = ({
     startIndex + APPS_PER_PAGE
   );
 
+
+ 
+
+  const handleCheckApp = (AppName: string, AppId: number) => {
+  navigate(`/App/${AppName}/${AppId}`);
+};
+
   return (
     <div className="hederaAppsMarketplace_wrapper">
 
@@ -219,12 +230,12 @@ const HederaAppsMarketplace = ({
         <>
           <div className="apps-grid">
             {paginatedApps.map((app) => (
-              <div key={app.appId} className="app-card">
+              <div key={app.appId} className="app-card" onClick={(e) => handleCheckApp(app.appName, app.appId)}>
                 {app.appImage && (
                   <img src={app.appImage} alt={app.appName} />
                 )}
                 <h3>{app.appName}</h3>
-                <p>{app.appDescription}</p>
+                {/* <p>{app.appDescription}</p> */}
                 <p><strong>Type:</strong> {app.appType}</p>
               </div>
             ))}
