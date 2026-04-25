@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import {
   loadAccounts,
   saveAccounts,
@@ -104,7 +104,7 @@ const connectAccount = async (acc?: { accountId: string; privateKey: string }) =
     <>
       <ToastContainer position="top-right" />
       <Routes>
-         <Route 
+         {/* <Route 
           path="/Myapps" 
           element={
             <Myapps 
@@ -113,7 +113,35 @@ const connectAccount = async (acc?: { accountId: string; privateKey: string }) =
               connectAccount={connectAccount} 
             />
           } 
-        />
+        /> */}
+        <Route 
+  path="/Myapps" 
+   element={
+            accountId && privateKey && evmAddress ? (
+              <Myapps
+                accountId={accountId}
+                privateKey={privateKey}
+                evmAddress={evmAddress}
+                accounts={accounts}
+                activeAccount={activeAccount}
+      
+      connectAccount={connectAccount}
+              />
+            ) : (
+              <>
+              <div>Please connect wallet</div>
+                   <Link
+        to="/ConnectWallet"
+        onClick={() => activeAccount !== null && connectAccount(accounts[activeAccount])}
+      >
+        <img width="35" height="35" src="https://img.icons8.com/nolan/64/left.png" alt="left" />
+      </Link>
+      </>
+            )
+          }
+  
+  
+/>
         <Route path="/" element={<DappStructure />} />
         <Route path="/CreateAccount" element={<CreateHederaAccount />} />
     
@@ -221,6 +249,10 @@ const connectAccount = async (acc?: { accountId: string; privateKey: string }) =
   privateKey={privateKey}
   
   evmAddress={evmAddress}
+  accounts={accounts}
+                activeAccount={activeAccount}
+      
+      connectAccount={connectAccount}
 /> } />
       }
 

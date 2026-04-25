@@ -32,12 +32,18 @@ interface Props {
   privateKey: string | null;
   evmAddress: string | null;
   network?: "testnet" | "mainnet";
+  accounts: { accountId: string; privateKey: string; evmAddress?: string }[];
+   activeAccount: number | null;
+  connectAccount: (acc?: { accountId: string; privateKey: string }) => Promise<void>;
 }
 
 const HederaAppsMarketplace = ({
   accountId,
   privateKey,
-  network = "testnet"
+  network = "testnet",
+  accounts, 
+  activeAccount,
+  connectAccount 
 }: Props) => {
 
   const contractId = "0.0.8454022";
@@ -178,14 +184,12 @@ const HederaAppsMarketplace = ({
       <div className="MarketplaceHeader_container">
         <div className="MarketplaceHeader_header">
 
-          <Link to="/">
-            <img
-              width="35"
-              height="35"
-              src="https://img.icons8.com/nolan/64/left.png"
-              alt="left"
-            />
-          </Link>
+          <Link
+        to="/ConnectWallet"
+        onClick={() => activeAccount !== null && connectAccount(accounts[activeAccount])}
+      >
+        <img width="35" height="35" src="https://img.icons8.com/nolan/64/left.png" alt="left" />
+      </Link>
 
                     <Link
                 to="/hederaAppsMarketplace"
@@ -230,7 +234,7 @@ const HederaAppsMarketplace = ({
         <>
           <div className="apps-grid">
             {paginatedApps.map((app) => (
-              <div key={app.appId} className="app-card" onClick={(e) => handleCheckApp(app.appName, app.appId)}>
+              <div key={app.appId} className="app-card" onClick={() => handleCheckApp(app.appName, app.appId)}>
                 {app.appImage && (
                   <img src={app.appImage} alt={app.appName} />
                 )}

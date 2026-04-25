@@ -1,4 +1,9 @@
+import "../Styles/hashcompanionStore.css";
 interface MyappsProps {
+    accountId: string;
+    privateKey: string;
+    evmAddress: string;
+    network?: "testnet" | "mainnet";
     accounts: {
         accountId: string;
         privateKey: string;
@@ -10,5 +15,5 @@ interface MyappsProps {
         privateKey: string;
     }) => Promise<void>;
 }
-declare const Myapps: ({ accounts, activeAccount, connectAccount }: MyappsProps) => import("react/jsx-runtime").JSX.Element;
+declare const Myapps: ({ accountId, privateKey, evmAddress, network, accounts, activeAccount, connectAccount }: MyappsProps) => import("react/jsx-runtime").JSX.Element;
 export default Myapps;
