@@ -1,4 +1,4 @@
-import "../Styles/hashcompanionStore.css";
+import "../Styles/Myapps.css";
 interface MyappsProps {
     accountId: string;
     privateKey: string;
