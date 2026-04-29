@@ -23,6 +23,7 @@ import HbarAccountManager from "./Components/HbarAccountManager.tsx";
 import Myapps from "./Components/Myapps.tsx";
 import HederaAppsMarketplace from "./Components/HederaAppsMarketplace.tsx";
 import HashCompanionStoreApp from "./Components/HashCompanionStoreApp.tsx";
+import MyAppsApp from "./Components/MyAppsApp.tsx";
 const App = () => {
   const navigate = useNavigate()
   // shared wallet state
@@ -104,44 +105,8 @@ const connectAccount = async (acc?: { accountId: string; privateKey: string }) =
     <>
       <ToastContainer position="top-right" />
       <Routes>
-         {/* <Route 
-          path="/Myapps" 
-          element={
-            <Myapps 
-              accounts={accounts} 
-              activeAccount={activeAccount} 
-              connectAccount={connectAccount} 
-            />
-          } 
-        /> */}
-        <Route 
-  path="/Myapps" 
-   element={
-            accountId && privateKey && evmAddress ? (
-              <Myapps
-                accountId={accountId}
-                privateKey={privateKey}
-                evmAddress={evmAddress}
-                accounts={accounts}
-                activeAccount={activeAccount}
-      
-      connectAccount={connectAccount}
-              />
-            ) : (
-              <>
-              <div>Please connect wallet</div>
-                   <Link
-        to="/ConnectWallet"
-        onClick={() => activeAccount !== null && connectAccount(accounts[activeAccount])}
-      >
-        <img width="35" height="35" src="https://img.icons8.com/nolan/64/left.png" alt="left" />
-      </Link>
-      </>
-            )
-          }
-  
-  
-/>
+         
+       
         <Route path="/" element={<DappStructure />} />
         <Route path="/CreateAccount" element={<CreateHederaAccount />} />
     
@@ -256,6 +221,35 @@ const connectAccount = async (acc?: { accountId: string; privateKey: string }) =
 /> } />
       }
 
+       <Route 
+  path="/Myapps" 
+   element={
+            accountId && privateKey && evmAddress ? (
+              <Myapps
+                accountId={accountId}
+                privateKey={privateKey}
+                evmAddress={evmAddress}
+                accounts={accounts}
+                activeAccount={activeAccount}
+      
+      connectAccount={connectAccount}
+              />
+            ) : (
+              <>
+              <div>Please connect wallet</div>
+                   <Link
+        to="/ConnectWallet"
+        onClick={() => activeAccount !== null && connectAccount(accounts[activeAccount])}
+      >
+        <img width="35" height="35" src="https://img.icons8.com/nolan/64/left.png" alt="left" />
+      </Link>
+      </>
+            )
+          }
+  
+  
+/>
+
       {
         
                     <Route
@@ -273,6 +267,9 @@ const connectAccount = async (acc?: { accountId: string; privateKey: string }) =
           }
         />
       }
+
+
+      <Route path="/MyApps/:AppName/:AppID" element={<MyAppsApp/>} />
 
       </Routes>
     </>

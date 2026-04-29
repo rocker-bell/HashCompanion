@@ -342,7 +342,7 @@
 
 import { useEffect, useState } from "react";
 import "../Styles/Myapps.css";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import {
@@ -396,6 +396,7 @@ const relationLabels = [
 ];
 
 const Myapps = ({ accountId, privateKey, evmAddress, network = "testnet", accounts, activeAccount, connectAccount }: MyappsProps) => {
+  const navigate = useNavigate()
   const contractId = "0.0.8454022";
   const [apps, setApps] = useState<(AppItem & { relation: AppLOT | null })[]>([]);
   const [loading, setLoading] = useState(true);
@@ -502,6 +503,10 @@ const Myapps = ({ accountId, privateKey, evmAddress, network = "testnet", accoun
     }
   };
 
+ const MyAppsAppRedirect = (AppName : String, AppId : Number) => {
+    navigate(`/MyApps/${AppName}/${AppId}`);
+};
+
   useEffect(() => {
     fetchApps();
   }, [accountId, privateKey, evmAddress, network]);
@@ -532,7 +537,7 @@ const Myapps = ({ accountId, privateKey, evmAddress, network = "testnet", accoun
       </div>
       <div className="apps-grid-wrapper">
         {paginatedApps.map(({ appId, appName,  appImage, appType, relation }) => (
-          <div key={appId} className="app-card-wrapper">
+          <div key={appId} className="app-card-wrapper" onClick={() => MyAppsAppRedirect(appName, appId)}>
             <img src={appImage} alt={appName} className="app-card-img" />
             <h3>{appName}</h3>
             {/* <p>{appDescription}</p> */}
