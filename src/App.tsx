@@ -111,167 +111,183 @@ const connectAccount = async (acc?: { accountId: string; privateKey: string }) =
         <Route path="/CreateAccount" element={<CreateHederaAccount />} />
     
 
-      <Route
-  path="/testCompanion"
-  element={
-    <HCCompanion
-      accountId={accountId}
-      privateKey={privateKey}
-      evmAddress={evmAddress}
-      accounts={accounts}
-      activeAccount={activeAccount}
-      setActiveAccount={setActiveAccount}
-      connectAccount={connectAccount}
-    />
-  }
-/>
-       
-
             <Route
-  path="/DexScan"
-  element={
-    <DexScan
-      accountId={accountId}
-      privateKey={privateKey}
-      evmAddress={evmAddress}
-      accounts={accounts}
-      activeAccount={activeAccount}
-      connectAccount={connectAccount}
-    />
-  }
-/>
-     
-        <Route
-  path="/ConnectWallet"
-  element={
-    <ConnectHederaAccount
-      accountId={accountId}
-      privateKey={privateKey}
-      evmAddress={evmAddress}
-      setAccountId={setAccountId}
-      setPrivateKey={setPrivateKey}
-      setEvmAddress={setEvmAddress}
-      accounts={accounts}           
-      activeAccount={activeAccount} 
-      autoConnect={autoConnect}
-      setAutoConnect={setAutoConnect}
-    />
-  }
-/>
-    
+        path="/testCompanion"
+        element={
+          <HCCompanion
+            accountId={accountId}
+            privateKey={privateKey}
+            evmAddress={evmAddress}
+            accounts={accounts}
+            activeAccount={activeAccount}
+            setActiveAccount={setActiveAccount}
+            connectAccount={connectAccount}
+          />
+        }
+      />
+            
 
-        <Route
-  path="/TodoApp"
-  element={
-    <TodoApp
-      accountId={accountId}
-      privateKey={privateKey}
-      evmAddress={evmAddress}
-      accounts={accounts}
-      activeAccount={activeAccount}
-      connectAccount={connectAccount}
-    />
-  }
-/>
-       
+                  <Route
+        path="/DexScan"
+        element={
+          <DexScan
+            accountId={accountId}
+            privateKey={privateKey}
+            evmAddress={evmAddress}
+            accounts={accounts}
+            activeAccount={activeAccount}
+            connectAccount={connectAccount}
+          />
+        }
+      />
+          
+              <Route
+        path="/ConnectWallet"
+        element={
+          <ConnectHederaAccount
+            accountId={accountId}
+            privateKey={privateKey}
+            evmAddress={evmAddress}
+            setAccountId={setAccountId}
+            setPrivateKey={setPrivateKey}
+            setEvmAddress={setEvmAddress}
+            accounts={accounts}           
+            activeAccount={activeAccount} 
+            autoConnect={autoConnect}
+            setAutoConnect={setAutoConnect}
+          />
+        }
+      />
+          
 
-        <Route
-  path="/Chatbox"
-  element={
-    <Chatbox
-      accountId={accountId}
-      privateKey={privateKey}
-      evmAddress={evmAddress}
-      accounts={accounts}
-      activeAccount={activeAccount}
-      connectAccount={connectAccount}
-    />
-  }
-/>
-      
+              <Route
+        path="/TodoApp"
+        element={
+          <TodoApp
+            accountId={accountId}
+            privateKey={privateKey}
+            evmAddress={evmAddress}
+            accounts={accounts}
+            activeAccount={activeAccount}
+            connectAccount={connectAccount}
+          />
+        }
+      />
+            
 
-            { <Route
-  path="/HCmanager"
-  element={
-    <HbarAccountManager
-      accounts={accounts}
-      setAccounts={setAccounts}
-      activeAccount={activeAccount}
-      setActiveAccount={setActiveAccount} 
-      onUseWallet={handleUseWallet}       
-      clearAccount={clearAccount}
-      connectAccount={connectAccount}
-    />
-  }
-/> }
+              <Route
+        path="/Chatbox"
+        element={
+          <Chatbox
+            accountId={accountId}
+            privateKey={privateKey}
+            evmAddress={evmAddress}
+            accounts={accounts}
+            activeAccount={activeAccount}
+            connectAccount={connectAccount}
+          />
+        }
+      />
+            
+
+                  { <Route
+        path="/HCmanager"
+        element={
+          <HbarAccountManager
+            accounts={accounts}
+            setAccounts={setAccounts}
+            activeAccount={activeAccount}
+            setActiveAccount={setActiveAccount} 
+            onUseWallet={handleUseWallet}       
+            clearAccount={clearAccount}
+            connectAccount={connectAccount}
+          />
+        }
+      /> }
 
 
-      {
+            {
 
-        <Route  path="/hederaAppsMarketplace" element={ 
-        <HederaAppsMarketplace
-  accountId={accountId}
-  privateKey={privateKey}
-  
-  evmAddress={evmAddress}
-  accounts={accounts}
-                activeAccount={activeAccount}
-      
-      connectAccount={connectAccount}
-/> } />
-      }
+              <Route  path="/hederaAppsMarketplace" element={ 
+              <HederaAppsMarketplace
+              accountId={accountId}
+              privateKey={privateKey}
+              
+              evmAddress={evmAddress}
+              accounts={accounts}
+              activeAccount={activeAccount}
+                  
+              connectAccount={connectAccount}
+      /> } />
+            }
 
-       <Route 
-  path="/Myapps" 
-   element={
+            <Route 
+        path="/Myapps" 
+        element={
+                  accountId && privateKey && evmAddress ? (
+                    <Myapps
+                      accountId={accountId}
+                      privateKey={privateKey}
+                      evmAddress={evmAddress}
+                      accounts={accounts}
+                      activeAccount={activeAccount}
+            
+                      connectAccount={connectAccount}
+                    />
+                  ) : (
+                    <>
+                    <div>Please connect wallet</div>
+                        <Link
+              to="/ConnectWallet"
+              onClick={() => activeAccount !== null && connectAccount(accounts[activeAccount])}
+            >
+              <img width="35" height="35" src="https://img.icons8.com/nolan/64/left.png" alt="left" />
+            </Link>
+            </>
+                  )
+                }
+        
+        
+      />
+
+            {
+              
+                          <Route
+                path="/App/:AppName/:AppID"
+                element={
+                  accountId && privateKey && evmAddress ? (
+                    <HashCompanionStoreApp
+                      accountId={accountId}
+                      privateKey={privateKey}
+                      evmAddress={evmAddress}
+                    />
+                  ) : (
+                    <div>Please connect wallet</div>
+                  )
+                }
+              />
+            }
+
+
+                  <Route
+          path="/MyApps/:AppName/:AppID"
+          element={
             accountId && privateKey && evmAddress ? (
-              <Myapps
+              <MyAppsApp
                 accountId={accountId}
                 privateKey={privateKey}
                 evmAddress={evmAddress}
                 accounts={accounts}
                 activeAccount={activeAccount}
-      
-      connectAccount={connectAccount}
-              />
-            ) : (
-              <>
-              <div>Please connect wallet</div>
-                   <Link
-        to="/ConnectWallet"
-        onClick={() => activeAccount !== null && connectAccount(accounts[activeAccount])}
-      >
-        <img width="35" height="35" src="https://img.icons8.com/nolan/64/left.png" alt="left" />
-      </Link>
-      </>
-            )
-          }
-  
-  
-/>
-
-      {
-        
-                    <Route
-          path="/App/:AppName/:AppID"
-          element={
-            accountId && privateKey && evmAddress ? (
-              <HashCompanionStoreApp
-                accountId={accountId}
-                privateKey={privateKey}
-                evmAddress={evmAddress}
+                connectAccount={connectAccount}
               />
             ) : (
               <div>Please connect wallet</div>
             )
           }
         />
-      }
 
-
-      <Route path="/MyApps/:AppName/:AppID" element={<MyAppsApp/>} />
-
-      </Routes>
+            </Routes>
     </>
   );
 };
